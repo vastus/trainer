@@ -2,8 +2,8 @@ extends ../layout
 block content
   #tasks
     form(action="/tasks", method="POST")
-      .field
-        textarea(name="task_query", cols="80", rows="24")
+      .field(style="width:750px;")
+        textarea(id="code", name="task_query", cols="80", rows="24")
           = "SELECT * FROM ptype;"
       .field
         input(type="submit", value="Send")
@@ -23,4 +23,15 @@ block content
               - each col in cols
                 td= row[col]
       
-
+  script.
+    window.onload = function() {
+      window.editor = CodeMirror.fromTextArea(document.getElementById('code'), {
+        mode: 'text/x-sql',
+        indentWithTabs: true,
+        smartIndent: true,
+        lineNumbers: true,
+        matchBrackets : true,
+        autofocus: true,
+        theme: 'monokai'
+      });
+    };
