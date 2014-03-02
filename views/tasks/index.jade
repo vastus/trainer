@@ -1,7 +1,7 @@
 extends ../layout
 block content
   #tasks
-    form(action="/tasks", method="POST")
+    form(id="form", action="/tasks", method="POST")
       .field(style="width:750px;")
         textarea(id="code", name="task_query", cols="80", rows="24")
           = "SELECT * FROM ptype;"
@@ -33,6 +33,15 @@ block content
         matchBrackets : true,
         autofocus: true,
         theme: 'monokai',
-        extraKeys: {"Ctrl-Space": "autocomplete"}
+        extraKeys: {
+          "Ctrl-Space": "autocomplete",
+          "Ctrl-Enter" : handleSubmit,
+          "Cmd-Enter" : handleSubmit
+        }
       });
+
+      function handleSubmit() {
+        $('#form').submit();
+      }
     };
+
