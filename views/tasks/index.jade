@@ -4,18 +4,35 @@ block content
     form(action="/tasks", method="POST")
       .field(style="width:750px;")
         textarea(id="code", name="task_query", cols="80", rows="24")
+          = "SELECT * FROM ptype;"
       .field
         input(type="submit", value="Send")
-    script.
-      window.onload = function() {
-          window.editor = CodeMirror.fromTextArea(document.getElementById('code'), {
-              mode: 'text/x-sql',
-              indentWithTabs: true,
-              smartIndent: true,
-              lineNumbers: true,
-              matchBrackets : true,
-              autofocus: true,
-              theme: 'monokai',
-              extraKeys: {"Ctrl-Space": "autocomplete"}
-          });
-      };
+  #errors
+    p= error
+  #results
+    table
+      thead
+        tr
+          if cols
+            - each col in cols
+              th= col
+      tbody
+        if rows
+          - each row in rows
+            tr
+              - each col in cols
+                td= row[col]
+      
+  script.
+    window.onload = function() {
+      window.editor = CodeMirror.fromTextArea(document.getElementById('code'), {
+        mode: 'text/x-sql',
+        indentWithTabs: true,
+        smartIndent: true,
+        lineNumbers: true,
+        matchBrackets : true,
+        autofocus: true,
+        theme: 'monokai'
+        extraKeys: {"Ctrl-Space": "au
+      });
+    };

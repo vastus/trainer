@@ -1,28 +1,26 @@
 var sqlite3 = require('sqlite3').verbose();
 var db = new sqlite3.Database('db/test.db', sqlite3.OPEN_READONLY);
 
-exports.index = function(req, res){
-  res.render('tasks/index.jade');
+exports.index = function (req, res) {
+  res.render('tasks/index.jade', {error: null, cols: [], rows: []});
 };
 
-exports.create = function(req, res){
-
-  // tulosta rivit
-  // renderöi show page
-
+exports.create = function (req, res) {
     var query = req.body.task_query;
     db.serialize(function() {
         db.all(query, function(err, rows) {
-            // console.log(row.id + ": " + row.info);
             if (err) {
-                console.log(err);
-                return;
-            }
+                res.render('tasks/index.jade', {error: err, cols: [], rows: []});
+            } else {
 
-            res.render('tasks/index.jade', {rows: rows});
+                var cols = [];
+                for (var col in rows[0]) {
+                    cols.push(col);
+                }
+
+                res.render('tasks/index.jade', {error: err, cols: cols, rows: rows});
+            }
         });
     });
-
-    // db.close();
 };
 
