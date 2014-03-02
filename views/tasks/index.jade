@@ -8,13 +8,14 @@ block content
         input(type="submit", value="Send")
     script.
       window.onload = function() {
-        window.editor = CodeMirror.fromTextArea(document.getElementById('code'), {
-          mode: 'text/x-sql',
-          indentWithTabs: true,
-          smartIndent: true,
-          lineNumbers: true,
-          matchBrackets : true,
-          autofocus: true,
-          theme: 'monokai'
-        });
+          window.editor = CodeMirror.fromTextArea(document.getElementById('code'), {
+              mode: 'text/x-sql',
+              indentWithTabs: true,
+              smartIndent: true,
+              lineNumbers: true,
+              matchBrackets : true,
+              autofocus: true,
+              theme: 'monokai',
+              extraKeys: {"Ctrl-Space": "autocomplete"}
+          });
       };
