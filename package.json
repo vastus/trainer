@@ -9,6 +9,7 @@
     "express": "3.4.4",
     "jade": "*",
     "stylus": "*",
-    "sqlite3": "~2.2.0"
+    "sqlite3": "~2.2.0",
+    "mongoose": "*"
   }
 }
