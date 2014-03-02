@@ -12,13 +12,11 @@ exports.create = function (req, res) {
             if (err) {
                 res.render('tasks/index.jade', {error: err, cols: [], rows: []});
             } else {
-
                 var cols = [];
                 for (var col in rows[0]) {
                     cols.push(col);
                 }
-
-                res.render('tasks/index.jade', {error: err, cols: cols, rows: rows});
+                res.render('tasks/index.jade', {error: null, cols: cols, rows: rows});
             }
         });
     });
