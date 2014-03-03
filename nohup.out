@@ -10,3 +10,283 @@ DEBUG: Starting child process with 'node app.js'
 DEBUG: Watching directory '/home/srv/trainer' for changes.
 Server running
 DEBUG: Sending SIGINT to child...
+
+DEBUG: Running node-supervisor with
+DEBUG:   program 'app.js'
+DEBUG:   --watch '.'
+DEBUG:   --ignore 'undefined'
+DEBUG:   --extensions 'node,js'
+DEBUG:   --exec 'node'
+
+DEBUG: Starting child process with 'node app.js'
+DEBUG: Watching directory '/home/srv/trainer' for changes.
+Server running
+[90mGET / [36m304 [90m426ms[0m
+[90mGET /javascripts/codemirror-compressed.js [36m304 [90m6ms[0m
+[90mGET /stylesheets/codemirror.css [36m304 [90m10ms[0m
+[90mGET /stylesheets/monokai.css [36m304 [90m10ms[0m
+[90mGET /stylesheets/show-hint.css [36m304 [90m9ms[0m
+[90mGET /javascripts/codemirror-editor.js [36m304 [90m5ms[0m
+[90mGET /stylesheets/style.css [32m200 [90m106ms - 110b[0m
+[90mGET / [36m304 [90m27ms[0m
+[90mGET /stylesheets/style.css [36m304 [90m4ms[0m
+[90mGET /stylesheets/codemirror.css [36m304 [90m2ms[0m
+[90mGET /stylesheets/monokai.css [36m304 [90m1ms[0m
+[90mGET /javascripts/codemirror-compressed.js [36m304 [90m1ms[0m
+[90mGET /stylesheets/show-hint.css [36m304 [90m3ms[0m
+[90mGET /javascripts/codemirror-editor.js [36m304 [90m4ms[0m
+[90mGET / [32m200 [90m23ms - 602b[0m
+[90mGET /stylesheets/style.css [36m304 [90m2ms[0m
+[90mGET /stylesheets/codemirror.css [36m304 [90m1ms[0m
+[90mGET /stylesheets/monokai.css [36m304 [90m2ms[0m
+[90mGET /stylesheets/show-hint.css [36m304 [90m1ms[0m
+[90mGET /javascripts/codemirror-compressed.js [36m304 [90m3ms[0m
+[90mGET /javascripts/codemirror-editor.js [36m304 [90m1ms[0m
+[90mGET /hi [33m404 [90m3ms[0m
+DEBUG: crashing child
+DEBUG: Starting child process with 'node app.js'
+Server running
+[90mGET /hi [32m200 [90m411ms - 602b[0m
+[90mGET /stylesheets/codemirror.css [36m304 [90m6ms[0m
+[90mGET /stylesheets/monokai.css [36m304 [90m7ms[0m
+[90mGET /stylesheets/show-hint.css [36m304 [90m7ms[0m
+[90mGET /stylesheets/style.css [32m200 [90m99ms - 110b[0m
+[90mGET /javascripts/codemirror-compressed.js [36m304 [90m0ms[0m
+[90mGET /javascripts/codemirror-editor.js [36m304 [90m1ms[0m
+[90mGET / [36m304 [90m25ms[0m
+[90mGET /stylesheets/style.css [36m304 [90m3ms[0m
+[90mGET /stylesheets/codemirror.css [36m304 [90m2ms[0m
+[90mGET /stylesheets/monokai.css [36m304 [90m1ms[0m
+[90mGET /stylesheets/show-hint.css [36m304 [90m1ms[0m
+[90mGET /javascripts/codemirror-compressed.js [36m304 [90m1ms[0m
+[90mGET /javascripts/codemirror-editor.js [36m304 [90m3ms[0m
+DEBUG: crashing child
+DEBUG: Starting child process with 'node app.js'
+Server running
+[90mGET / [32m200 [90m429ms - 602b[0m
+[90mGET /javascripts/codemirror-editor.js [36m304 [90m7ms[0m
+[90mGET /javascripts/codemirror-compressed.js [36m304 [90m7ms[0m
+[90mGET /stylesheets/codemirror.css [36m304 [90m11ms[0m
+[90mGET /stylesheets/monokai.css [36m304 [90m9ms[0m
+[90mGET /stylesheets/show-hint.css [36m304 [90m7ms[0m
+[90mGET /stylesheets/style.css [32m200 [90m108ms - 110b[0m
+[90mGET / [36m304 [90m27ms[0m
+[90mGET / [36m304 [90m20ms[0m
+[90mGET /stylesheets/style.css [36m304 [90m2ms[0m
+[90mGET /stylesheets/codemirror.css [36m304 [90m1ms[0m
+[90mGET /stylesheets/monokai.css [36m304 [90m1ms[0m
+[90mGET /javascripts/codemirror-compressed.js [36m304 [90m2ms[0m
+[90mGET /stylesheets/show-hint.css [36m304 [90m3ms[0m
+[90mGET /javascripts/codemirror-editor.js [36m304 [90m2ms[0m
+[90mGET /tasks [33m404 [90m4ms[0m
+[90mGET /tasks/1 [32m200 [90m65ms - 961b[0m
+[90mGET /stylesheets/style.css [36m304 [90m3ms[0m
+[90mGET /javascripts/codemirror-compressed.js [36m304 [90m2ms[0m
+[90mGET /javascripts/codemirror-editor.js [36m304 [90m2ms[0m
+[90mGET /stylesheets/monokai.css [36m304 [90m5ms[0m
+[90mGET /stylesheets/show-hint.css [36m304 [90m3ms[0m
+[90mGET /stylesheets/codemirror.css [36m304 [90m2ms[0m
+[90mGET /tasks/1/execute?task_query=SELECT+*+FROM+ptype%3B [32m200 [90m67ms - 1.63kb[0m
+[90mGET /stylesheets/style.css [36m304 [90m3ms[0m
+[90mGET /stylesheets/codemirror.css [36m304 [90m2ms[0m
+[90mGET /stylesheets/monokai.css [36m304 [90m3ms[0m
+[90mGET /stylesheets/show-hint.css [36m304 [90m3ms[0m
+[90mGET /javascripts/codemirror-compressed.js [36m304 [90m2ms[0m
+[90mGET /javascripts/codemirror-editor.js [36m304 [90m2ms[0m
+[90mGET /tasks/1/execute?task_query=SELECT+*+FROM+ptypeee%3B [32m200 [90m71ms - 1004b[0m
+[90mGET /stylesheets/codemirror.css [36m304 [90m3ms[0m
+[90mGET /stylesheets/monokai.css [36m304 [90m2ms[0m
+[90mGET /stylesheets/style.css [36m304 [90m5ms[0m
+[90mGET /javascripts/codemirror-compressed.js [36m304 [90m3ms[0m
+[90mGET /javascripts/codemirror-editor.js [36m304 [90m2ms[0m
+[90mGET /stylesheets/show-hint.css [36m304 [90m6ms[0m
+[90mGET /tasks/1/execute?task_query=SELECT+*+FROM+ptypeee%3B [32m200 [90m2ms[0m
+[90mGET /tasks/1/execute?task_query=SELECT+*+FROM+ptypeee%3B [36m304 [90m32ms[0m
+[90mGET /stylesheets/style.css [36m304 [90m1ms[0m
+[90mGET /stylesheets/codemirror.css [36m304 [90m2ms[0m
+[90mGET /javascripts/codemirror-editor.js [36m304 [90m2ms[0m
+[90mGET /stylesheets/monokai.css [36m304 [90m5ms[0m
+[90mGET /stylesheets/show-hint.css [36m304 [90m4ms[0m
+[90mGET /javascripts/codemirror-compressed.js [36m304 [90m2ms[0m
+[90mGET /tasks/1/ [32m200 [90m39ms - 961b[0m
+[90mGET /stylesheets/style.css [36m304 [90m2ms[0m
+[90mGET /stylesheets/codemirror.css [36m304 [90m1ms[0m
+[90mGET /stylesheets/monokai.css [36m304 [90m2ms[0m
+[90mGET /javascripts/codemirror-compressed.js [36m304 [90m3ms[0m
+[90mGET /javascripts/codemirror-editor.js [36m304 [90m3ms[0m
+[90mGET /stylesheets/show-hint.css [36m304 [90m3ms[0m
+[90mGET /tasks/1/ [32m200 [90m46ms - 961b[0m
+[90mGET /stylesheets/style.css [32m200 [90m3ms - 110b[0m
+[90mGET /stylesheets/codemirror.css [32m200 [90m1ms - 6.04kb[0m
+[90mGET /stylesheets/monokai.css [32m200 [90m2ms - 1.21kb[0m
+[90mGET /stylesheets/show-hint.css [32m200 [90m3ms - 660b[0m
+[90mGET /javascripts/codemirror-editor.js [32m200 [90m4ms - 617b[0m
+[90mGET /javascripts/codemirror-compressed.js [32m200 [90m20ms - 154.68kb[0m
+[90mGET /tasks/1/ [32m200 [90m38ms - 961b[0m
+[90mGET /stylesheets/codemirror.css [32m200 [90m3ms - 6.04kb[0m
+[90mGET /stylesheets/style.css [32m200 [90m6ms - 110b[0m
+[90mGET /stylesheets/monokai.css [32m200 [90m2ms - 1.21kb[0m
+[90mGET /stylesheets/show-hint.css [32m200 [90m5ms - 660b[0m
+[90mGET /javascripts/codemirror-editor.js [32m200 [90m5ms - 617b[0m
+[90mGET /javascripts/codemirror-compressed.js [32m200 [90m37ms - 154.68kb[0m
+[90mGET /tasks/1/execute?task_query=SELECT+*+FROM+ptype%3B [32m200 [90m54ms - 1.63kb[0m
+[90mGET /javascripts/codemirror-compressed.js [36m304 [90m1ms[0m
+[90mGET /stylesheets/codemirror.css [36m304 [90m3ms[0m
+[90mGET /stylesheets/monokai.css [36m304 [90m4ms[0m
+[90mGET /stylesheets/show-hint.css [36m304 [90m3ms[0m
+[90mGET /javascripts/codemirror-editor.js [36m304 [90m2ms[0m
+[90mGET /stylesheets/style.css [36m304 [90m8ms[0m
+[90mGET /tasks/1/ [36m304 [90m36ms[0m
+[90mGET /stylesheets/style.css [36m304 [90m2ms[0m
+[90mGET /stylesheets/codemirror.css [36m304 [90m1ms[0m
+[90mGET /stylesheets/monokai.css [36m304 [90m2ms[0m
+[90mGET /stylesheets/show-hint.css [36m304 [90m1ms[0m
+[90mGET /javascripts/codemirror-compressed.js [36m304 [90m2ms[0m
+[90mGET /javascripts/codemirror-editor.js [36m304 [90m1ms[0m
+[90mGET /tasks/1/execute?task_query=SELECT+*+FROM+ptype%3B [32m200 [90m38ms - 1.63kb[0m
+[90mGET /stylesheets/style.css [36m304 [90m2ms[0m
+[90mGET /stylesheets/codemirror.css [36m304 [90m2ms[0m
+[90mGET /stylesheets/monokai.css [36m304 [90m1ms[0m
+[90mGET /stylesheets/show-hint.css [36m304 [90m2ms[0m
+[90mGET /javascripts/codemirror-compressed.js [36m304 [90m1ms[0m
+[90mGET /javascripts/codemirror-editor.js [36m304 [90m1ms[0m
+[90mGET /tasks/1/execute?task_query=DROP+TABLE+ptype%3B [32m200 [90m55ms - 1021b[0m
+[90mGET /stylesheets/codemirror.css [36m304 [90m4ms[0m
+[90mGET /stylesheets/monokai.css [36m304 [90m3ms[0m
+[90mGET /stylesheets/style.css [36m304 [90m15ms[0m
+[90mGET /stylesheets/show-hint.css [36m304 [90m10ms[0m
+[90mGET /javascripts/codemirror-compressed.js [36m304 [90m9ms[0m
+[90mGET /javascripts/codemirror-editor.js [36m304 [90m2ms[0m
+[90mGET /tasks/1/ [36m304 [90m53ms[0m
+[90mGET /stylesheets/style.css [36m304 [90m2ms[0m
+[90mGET /stylesheets/codemirror.css [36m304 [90m1ms[0m
+[90mGET /stylesheets/monokai.css [36m304 [90m2ms[0m
+[90mGET /stylesheets/show-hint.css [36m304 [90m1ms[0m
+[90mGET /javascripts/codemirror-compressed.js [36m304 [90m1ms[0m
+[90mGET /javascripts/codemirror-editor.js [36m304 [90m0ms[0m
+[90mGET /tasks/1/ [32m200 [90m58ms - 961b[0m
+[90mGET /stylesheets/style.css [32m200 [90m7ms - 110b[0m
+[90mGET /stylesheets/codemirror.css [32m200 [90m5ms - 6.04kb[0m
+[90mGET /stylesheets/monokai.css [32m200 [90m2ms - 1.21kb[0m
+[90mGET /stylesheets/show-hint.css [32m200 [90m1ms - 660b[0m
+[90mGET /tasks/1/ [36m304 [90m67ms[0m
+[90mGET /stylesheets/codemirror.css [36m304 [90m3ms[0m
+[90mGET /stylesheets/style.css [32m200 [90m12ms - 110b[0m
+[90mGET /stylesheets/monokai.css [32m200 [90m8ms - 1.21kb[0m
+[90mGET /stylesheets/show-hint.css [32m200 [90m7ms - 660b[0m
+[90mGET /javascripts/codemirror-editor.js [32m200 [90m3ms - 617b[0m
+[90mGET /javascripts/codemirror-compressed.js [32m200 [90m24ms - 154.68kb[0m
+[90mGET /tasks/1/ [32m200 [90m32ms - 961b[0m
+[90mGET /stylesheets/style.css [32m200 [90m1ms - 110b[0m
+[90mGET /stylesheets/codemirror.css [32m200 [90m3ms - 6.04kb[0m
+[90mGET /stylesheets/monokai.css [32m200 [90m2ms - 1.21kb[0m
+[90mGET /stylesheets/show-hint.css [32m200 [90m2ms - 660b[0m
+[90mGET /javascripts/codemirror-editor.js [32m200 [90m1ms - 617b[0m
+[90mGET /javascripts/codemirror-compressed.js [32m200 [90m250ms - 154.68kb[0m
+[90mGET /tasks/1/ [32m200 [90m32ms - 961b[0m
+[90mGET /stylesheets/style.css [32m200 [90m2ms - 110b[0m
+[90mGET /stylesheets/codemirror.css [32m200 [90m3ms - 6.04kb[0m
+[90mGET /stylesheets/monokai.css [32m200 [90m1ms - 1.21kb[0m
+[90mGET /stylesheets/show-hint.css [32m200 [90m2ms - 660b[0m
+[90mGET /javascripts/codemirror-editor.js [32m200 [90m1ms - 617b[0m
+[90mGET /javascripts/codemirror-compressed.js [32m200 [90m63ms - 154.68kb[0m
+[90mGET /tasks/1/execute?task_query=SELECT+*+FROM+ptype%3B [36m304 [90m50ms[0m
+[90mGET /stylesheets/style.css [36m304 [90m4ms[0m
+[90mGET /stylesheets/codemirror.css [36m304 [90m3ms[0m
+[90mGET /stylesheets/monokai.css [36m304 [90m2ms[0m
+[90mGET /javascripts/codemirror-compressed.js [36m304 [90m2ms[0m
+[90mGET /javascripts/codemirror-editor.js [36m304 [90m3ms[0m
+[90mGET /stylesheets/show-hint.css [36m304 [90m6ms[0m
+[90mGET / [36m304 [90m13ms[0m
+[90mGET /stylesheets/style.css [36m304 [90m2ms[0m
+[90mGET /javascripts/codemirror-compressed.js [36m304 [90m4ms[0m
+[90mGET /stylesheets/show-hint.css [36m304 [90m2ms[0m
+[90mGET /javascripts/codemirror-editor.js [36m304 [90m2ms[0m
+[90mGET /stylesheets/codemirror.css [36m304 [90m3ms[0m
+[90mGET /stylesheets/monokai.css [36m304 [90m3ms[0m
+[90mGET / [32m200 [90m13ms - 602b[0m
+[90mGET /javascripts/codemirror-compressed.js [36m304 [90m1ms[0m
+[90mGET /stylesheets/codemirror.css [36m304 [90m3ms[0m
+[90mGET /stylesheets/monokai.css [36m304 [90m3ms[0m
+[90mGET /stylesheets/show-hint.css [36m304 [90m2ms[0m
+[90mGET /javascripts/codemirror-editor.js [36m304 [90m0ms[0m
+[90mGET /stylesheets/style.css [36m304 [90m6ms[0m
+[90mGET / [36m304 [90m14ms[0m
+[90mGET /javascripts/codemirror-compressed.js [36m304 [90m2ms[0m
+[90mGET /javascripts/codemirror-editor.js [36m304 [90m2ms[0m
+[90mGET /stylesheets/codemirror.css [36m304 [90m4ms[0m
+[90mGET /stylesheets/monokai.css [36m304 [90m4ms[0m
+[90mGET /stylesheets/show-hint.css [36m304 [90m4ms[0m
+[90mGET /stylesheets/style.css [36m304 [90m7ms[0m
+[90mGET / [36m304 [90m13ms[0m
+[90mGET /stylesheets/style.css [36m304 [90m4ms[0m
+[90mGET /stylesheets/codemirror.css [36m304 [90m2ms[0m
+[90mGET /stylesheets/monokai.css [36m304 [90m2ms[0m
+[90mGET /stylesheets/show-hint.css [36m304 [90m1ms[0m
+[90mGET /javascripts/codemirror-editor.js [36m304 [90m1ms[0m
+[90mGET /javascripts/codemirror-compressed.js [36m304 [90m1ms[0m
+[90mGET /tasks [33m404 [90m2ms[0m
+[90mGET /tasks [33m404 [90m1ms[0m
+[90mGET /tasks/1 [36m304 [90m39ms[0m
+[90mGET /stylesheets/codemirror.css [36m304 [90m1ms[0m
+[90mGET /stylesheets/style.css [36m304 [90m2ms[0m
+[90mGET /javascripts/codemirror-editor.js [36m304 [90m1ms[0m
+[90mGET /stylesheets/monokai.css [36m304 [90m2ms[0m
+[90mGET /stylesheets/show-hint.css [36m304 [90m1ms[0m
+[90mGET /javascripts/codemirror-compressed.js [36m304 [90m1ms[0m
+[90mGET /tasks/1/execute?task_query=SELECT+*+FROM+ptype%3B%0D%0A [32m200 [90m40ms - 1.63kb[0m
+[90mGET /javascripts/codemirror-compressed.js [36m304 [90m2ms[0m
+[90mGET /javascripts/codemirror-editor.js [36m304 [90m1ms[0m
+[90mGET /stylesheets/codemirror.css [36m304 [90m5ms[0m
+[90mGET /stylesheets/monokai.css [36m304 [90m4ms[0m
+[90mGET /stylesheets/show-hint.css [36m304 [90m4ms[0m
+[90mGET /stylesheets/style.css [36m304 [90m7ms[0m
+[90mGET /tasks/1/ [32m200 [90m31ms - 961b[0m
+[90mGET /stylesheets/style.css [32m200 [90m2ms - 110b[0m
+[90mGET /stylesheets/codemirror.css [32m200 [90m2ms - 6.04kb[0m
+[90mGET /stylesheets/monokai.css [32m200 [90m2ms - 1.21kb[0m
+[90mGET /stylesheets/show-hint.css [32m200 [90m1ms - 660b[0m
+[90mGET /javascripts/codemirror-editor.js [32m200 [90m2ms - 617b[0m
+[90mGET /javascripts/codemirror-compressed.js [32m200 [90m11ms - 154.68kb[0m
+[90mGET /tasks/1 [32m200 [90m42ms - 961b[0m
+[90mGET /stylesheets/style.css [36m304 [90m2ms[0m
+[90mGET /stylesheets/codemirror.css [36m304 [90m2ms[0m
+[90mGET /stylesheets/monokai.css [36m304 [90m2ms[0m
+[90mGET /javascripts/codemirror-compressed.js [36m304 [90m1ms[0m
+[90mGET /stylesheets/show-hint.css [36m304 [90m2ms[0m
+[90mGET /javascripts/codemirror-editor.js [36m304 [90m1ms[0m
+[90mGET /tasks/1/ [32m200 [90m40ms - 961b[0m
+[90mGET /stylesheets/style.css [32m200 [90m5ms - 110b[0m
+[90mGET /stylesheets/codemirror.css [32m200 [90m2ms - 6.04kb[0m
+[90mGET /stylesheets/monokai.css [32m200 [90m1ms - 1.21kb[0m
+[90mGET /stylesheets/show-hint.css [32m200 [90m2ms - 660b[0m
+[90mGET /javascripts/codemirror-editor.js [32m200 [90m9ms - 617b[0m
+[90mGET /javascripts/codemirror-compressed.js [32m200 [90m23ms - 154.68kb[0m
+[90mGET /tasks/1/execute?task_query=SELECT+*+FROM+ptype%3B [32m200 [90m32ms - 1.63kb[0m
+[90mGET /stylesheets/style.css [36m304 [90m5ms[0m
+[90mGET /javascripts/codemirror-compressed.js [36m304 [90m1ms[0m
+[90mGET /stylesheets/codemirror.css [36m304 [90m3ms[0m
+[90mGET /stylesheets/monokai.css [36m304 [90m3ms[0m
+[90mGET /stylesheets/show-hint.css [36m304 [90m3ms[0m
+[90mGET /javascripts/codemirror-editor.js [36m304 [90m2ms[0m
+[90mGET / [32m200 [90m16ms - 602b[0m
+[90mGET /stylesheets/codemirror.css [36m304 [90m3ms[0m
+[90mGET /stylesheets/monokai.css [36m304 [90m3ms[0m
+[90mGET /stylesheets/show-hint.css [36m304 [90m3ms[0m
+[90mGET /javascripts/codemirror-editor.js [36m304 [90m5ms[0m
+[90mGET /javascripts/codemirror-compressed.js [36m304 [90m5ms[0m
+[90mGET /stylesheets/style.css [36m304 [90m10ms[0m
+[90mGET / [36m304 [90m23ms[0m
+[90mGET /javascripts/codemirror-editor.js [36m304 [90m3ms[0m
+[90mGET /javascripts/codemirror-compressed.js [36m304 [90m2ms[0m
+[90mGET /stylesheets/codemirror.css [36m304 [90m5ms[0m
+[90mGET /stylesheets/monokai.css [36m304 [90m6ms[0m
+[90mGET /stylesheets/show-hint.css [36m304 [90m5ms[0m
+[90mGET /stylesheets/style.css [36m304 [90m8ms[0m
+[90mGET /tasks/2 [32m200 [90m51ms - 961b[0m
+[90mGET /javascripts/codemirror-compressed.js [36m304 [90m2ms[0m
+[90mGET /javascripts/codemirror-editor.js [36m304 [90m2ms[0m
+[90mGET /stylesheets/codemirror.css [36m304 [90m6ms[0m
+[90mGET /stylesheets/monokai.css [36m304 [90m5ms[0m
+[90mGET /stylesheets/show-hint.css [36m304 [90m5ms[0m
+[90mGET /stylesheets/style.css [36m304 [90m8ms[0m
