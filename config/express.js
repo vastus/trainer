@@ -1,11 +1,12 @@
 var express = require('express');
 var path = require('path');
 
+/**
+ * Express settings
+ * Params: express app, root dir __dirname
+ */
+
 module.exports = function (app, dirname) {
-
-  // set views path, template engine and default layout
-
-
   app.set('port', process.env.PORT || 3000);
   app.set('views', path.join(dirname, 'views'));
   app.set('view engine', 'jade');
