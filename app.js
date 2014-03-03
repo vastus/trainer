@@ -5,6 +5,7 @@
 var express = require('express');
 var controllers = require('./controllers');
 var tasks = require('./controllers/tasks');
+var users = require('./controllers/users');
 var http = require('http');
 var path = require('path');
 var app = express();
@@ -17,7 +18,7 @@ var app = express();
 require('./config/express')(app, __dirname)
 
 //routes.js params app, routes, tasks
-require('./config/routes')(app, controllers, tasks)
+require('./config/routes')(app, controllers, tasks, users)
 
 
 /**

@@ -1,4 +1,4 @@
-module.exports = function (app, routes, tasks) {
+module.exports = function (app, routes, tasks, users) {
     app.get('/', routes.index);
 
     /**
@@ -9,5 +9,9 @@ module.exports = function (app, routes, tasks) {
 
     app.get('/tasks/new', tasks.newTask);
     // app.post('/tasks', tasks.createTask);
+
+    app.get('/users', users.index);
+    app.get('/users/new', users.newUser);
+    app.post('/users', users.create);
 };
 
