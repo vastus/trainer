@@ -290,3 +290,17 @@ Server running
 [90mGET /stylesheets/monokai.css [36m304 [90m5ms[0m
 [90mGET /stylesheets/show-hint.css [36m304 [90m5ms[0m
 [90mGET /stylesheets/style.css [36m304 [90m8ms[0m
+[90mGET /tasks/5 [32m200 [90m47ms - 961b[0m
+[90mGET /javascripts/codemirror-compressed.js [36m304 [90m2ms[0m
+[90mGET /stylesheets/codemirror.css [36m304 [90m5ms[0m
+[90mGET /stylesheets/monokai.css [36m304 [90m5ms[0m
+[90mGET /stylesheets/show-hint.css [36m304 [90m5ms[0m
+[90mGET /javascripts/codemirror-editor.js [36m304 [90m2ms[0m
+[90mGET /stylesheets/style.css [36m304 [90m9ms[0m
+[90mGET /tasks/1 [32m200 [90m56ms - 961b[0m
+[90mGET /javascripts/codemirror-editor.js [36m304 [90m1ms[0m
+[90mGET /javascripts/codemirror-compressed.js [36m304 [90m2ms[0m
+[90mGET /stylesheets/codemirror.css [36m304 [90m4ms[0m
+[90mGET /stylesheets/show-hint.css [36m304 [90m4ms[0m
+[90mGET /stylesheets/monokai.css [36m304 [90m4ms[0m
+[90mGET /stylesheets/style.css [36m304 [90m7ms[0m
