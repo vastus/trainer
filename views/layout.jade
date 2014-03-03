@@ -11,8 +11,12 @@ html
     script(src='/javascripts/codemirror-editor.js')
   body
     header
-      h1
-        a(href="/") Raineri
+        .navibar
+          a(href="/users") |   users  |
+          a(href="/tasks/1") |   tasks  |
+        h1
+          a(href="/") Raineri
+
 
     #torso
       block content

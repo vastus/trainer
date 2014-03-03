@@ -1,0 +1,18 @@
+extends ../layout
+
+block content
+  h1 Users
+
+  #results
+    table
+      thead
+        if users
+          tr
+            th name
+      tbody
+        if users
+          - each u in users
+            tr
+              td= u.username
+  br
+  a(href="/users/new") New User

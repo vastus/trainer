@@ -9,8 +9,7 @@
 
 var mongoose = require('mongoose'),
     Schema = mongoose.Schema,
-    crypto = require('crypto'),
-    oAuthTypes = ['github', 'twitter', 'facebook', 'google', 'linkedin']
+    crypto = require('crypto')
 
 /**
  * User Schema
@@ -18,19 +17,10 @@ var mongoose = require('mongoose'),
  */
 
 var UserSchema = new Schema({
-  name: { type: String, default: '' },
-  email: { type: String, default: '' },
   username: { type: String, default: '' },
-  provider: { type: String, default: '' },
   hashed_password: { type: String, default: '' },
-  salt: { type: String, default: '' },
-  authToken: { type: String, default: '' },
-  //facebook: {},
-  //twitter: {},
-  //github: {},
-  //google: {},
-  //linkedin: {}
-})
+  salt: { type: String, default: '' }
+});
 
 
 
@@ -98,14 +88,6 @@ UserSchema.methods = {
     } catch (err) {
       return ''
     }
-  },
-
-  /**
-   * Validation is not required if using OAuth
-   */
-
-  doesNotRequireValidation: function() {
-    return ~oAuthTypes.indexOf(this.provider);
   }
 }
 
