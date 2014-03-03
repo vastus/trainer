@@ -1,16 +1,31 @@
+/**
+ * Module dependencies.
+ */
+
 var express = require('express');
-var routes = require('./routes');
-var tasks = require('./routes/tasks');
+var controllers = require('./controllers');
+var tasks = require('./controllers/tasks');
 var http = require('http');
 var path = require('path');
 var app = express();
 
-//express.js settings
+/**
+ * Config
+ */
+
+//express.js settings, params app, __dirname
 require('./config/express')(app, __dirname)
-//routes.js
-require('./config/routes')(app, routes, tasks)
+
+//routes.js params app, routes, tasks
+require('./config/routes')(app, controllers, tasks)
 
 
-http.createServer(app).listen(app.get('port'), function(){
-    console.log('Express server listening on port ' + app.get('port'));
-});
+/**
+ * Launch
+ */
+
+//http://stackoverflow.com/questions/17696801/express-js-app-listen-vs-server-listen
+app.listen(app.get('port'));
+console.log("Server running");
+
+

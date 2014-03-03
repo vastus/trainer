@@ -1,3 +1,8 @@
+
+//https://github.com/madhums/node-express-mongoose-demo
+//http://mongoosejs.com/docs/guide.html
+
+
 /**
  * Module dependencies.
  */
