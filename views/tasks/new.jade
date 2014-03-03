@@ -1,0 +1,20 @@
+extends ../layout
+block content
+  #task.new
+    h2 Create a Task
+    form(action="/tasks", method="POST")
+      .field
+        label(for="task_name") Name 
+        br
+        input(id="task_name", type="text", name="task[name]")
+      .field
+        label(for="task_description") Description
+        br
+        textarea(id="task_description", name="task[description]", cols="80", rows="10")
+      .field
+        label(for="task_query") SQL Query
+        br
+        textarea(id="task_description", name="task[description]", cols="80", rows="5")
+      .button
+        input(type="submit", value="Create")
+
