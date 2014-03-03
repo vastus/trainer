@@ -17,6 +17,7 @@ exports.create = function (req, res) {
                     cols.push(col);
                 }
                 res.render('tasks/index.jade', {error: null, cols: cols, rows: rows});
+                //redirect?
             }
         });
     });
