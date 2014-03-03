@@ -1,6 +1,5 @@
 module.exports = function (app, routes, tasks, users) {
     app.get('/', routes.index);
-    app.get('/hi', routes.index);
 
     /**
      * Routes for tasks.
