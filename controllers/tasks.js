@@ -5,7 +5,7 @@ exports.index = function (req, res) {
   res.render('tasks/index.jade', {error: null, cols: [], rows: []});
 };
 
-exports.create = function (req, res) {
+exports.execute = function (req, res) {
     var query = req.body.task_query;
     db.serialize(function() {
         db.all(query, function(err, rows) {
