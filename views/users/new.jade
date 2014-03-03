@@ -1,0 +1,14 @@
+extends ../layout
+block content
+  #signup
+    form(id="form", action="/users", method="POST")
+      .fiel="Käyttäjätunnus"
+        input(name="username", value=username)
+      .field="Salasana"
+        input(name="password", type="password")
+      .field="Salasana uudelleen"
+        input(name="password_confirmation", type="password")
+      .field
+        input(type="submit", value="Rekisteröidy")
+  #errors
+    p= error
