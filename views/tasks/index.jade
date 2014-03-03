@@ -3,7 +3,7 @@ block content
   #tasks
     form(id="form", action="/tasks", method="POST")
       .field(style="width:750px;")
-        textarea(id="code", name="task_query", cols="80", rows="24")
+        textarea(class="code", name="task_query", cols="80", rows="24")
           = "SELECT * FROM ptype;"
       .field
         input(type="submit", value="Send")
@@ -22,26 +22,3 @@ block content
             tr
               - each col in cols
                 td= row[col]
-      
-  script.
-    window.onload = function() {
-      window.editor = CodeMirror.fromTextArea(document.getElementById('code'), {
-        mode: 'text/x-sql',
-        indentWithTabs: true,
-        smartIndent: true,
-        lineNumbers: true,
-        matchBrackets : true,
-        autofocus: true,
-        theme: 'monokai',
-        extraKeys: {
-          "Ctrl-Space": "autocomplete",
-          "Ctrl-Enter" : handleSubmit,
-          "Cmd-Enter" : handleSubmit
-        }
-      });
-
-      function handleSubmit() {
-        $('#form').submit();
-      }
-    };
-
