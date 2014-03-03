@@ -1,7 +1,7 @@
 extends ../layout
 block content
   #tasks
-    form(id="form", action="/tasks", method="POST")
+    form(id="form", action="/tasks/1/execute", method="GET")
       .field(style="width:750px;")
         textarea(id="code", name="task_query", cols="80", rows="24")
           = "SELECT * FROM ptype;"
