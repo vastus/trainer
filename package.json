@@ -1,15 +1,30 @@
 {
-  "name": "application-name",
+  "name": "Raineri",
   "version": "0.0.1",
-  "private": true,
-  "scripts": {
-    "start": "node app.js"
-  },
+  "description": "SQL Trainer",
+  "main": "app.js",
   "dependencies": {
-    "express": "3.4.4",
-    "jade": "*",
-    "stylus": "*",
+    "stylus": "~0.42.2",
+    "express": "~3.4.4",
     "sqlite3": "~2.2.0",
-    "mongoose": "*"
+    "jade": "~1.2.0",
+    "mongoose": "~3.8.8"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/vastus/trainer.git"
+  },
+  "keywords": [
+    "sql",
+    "trainer"
+  ],
+  "author": "",
+  "license": "BSD-2-Clause",
+  "bugs": {
+    "url": "https://github.com/vastus/trainer/issues"
   }
 }
