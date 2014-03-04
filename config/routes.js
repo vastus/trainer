@@ -13,7 +13,6 @@ module.exports = function (app, routes, tasks, users, databases) {
     app.get('/tasks/new', tasks.newTask);
     // app.post('/tasks', tasks.createTask);
 
-
     /**
      * User routes.
      */
@@ -24,6 +23,8 @@ module.exports = function (app, routes, tasks, users, databases) {
     /**
      * Database routes.
      */
+    app.get('/databases', databases.index);
     app.get('/databases/new', databases.newDatabase);
+    app.post('/databases', databases.createDatabase);
 };
 
