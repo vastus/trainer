@@ -36,6 +36,8 @@ module.exports = function (app) {
     app.get('/courses', courses.index);
     app.get('/courses/new', courses.newCourse);
     app.post('/courses', courses.createCourse);
+    app.get('/courses/:id', courses.showCourse);
+
     /**
      * Database routes.
      */
