@@ -41,7 +41,8 @@ mongoose.connection.on('disconnected', function () {
 var models_path = __dirname + '/models';
 
 fs.readdirSync(models_path).forEach(function (file) {
-  if (~file.indexOf('.js')) require(models_path + '/' + file)
+  if (~file.indexOf('.js') && file.substr(-3) === '.js')
+    require(models_path + '/' + file)
 });
 
 
@@ -53,12 +54,13 @@ var app = express();
 var controllers = require('./controllers');
 var tasks = require('./controllers/tasks');
 var users = require('./controllers/users');
+var databases = require('./controllers/databases');
 
 //express.js settings, params app, __dirname
-require('./config/express')(app, __dirname)
+require('./config/express')(app, __dirname);
 
 //routes.js params app, routes, tasks
-require('./config/routes')(app, controllers, tasks, users)
+require('./config/routes')(app, controllers, tasks, users, databases);
 
 
 /**
