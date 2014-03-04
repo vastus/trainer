@@ -55,15 +55,7 @@ exports.createCourse = function(req, res){
  * GET users/show/:id
  */
 exports.showCourse = function(req, res){
-//  res.render('users/show', {user: User.find({_id: req.params.id})});
-//  console.log(User.find({_id: req.params.id}));
-//  console.log(require('util').inspect(User.find({_id: req.params.id})));
-//  res.send(User.find({_id: req.params.id}));
-
-
   Course.find({_id: req.params.id}, function (err, course) {
     res.render('courses/show', {course: course});
   });
-
-
 };
