@@ -1,19 +1,17 @@
 extends ../layout
 
 block content
-  h1 Users
-
-  #results
-    table
-      thead
-        if users
+  h1 Courses
+  if courses.length
+    #results
+      table
+        thead
           tr
             th name
-      tbody
-        if users
-          - each u in users
+        tbody
+          each c in courses
             tr
               td
-                a(href="/users/"+u.username)= u.username
+                a(href="/courses/"+c._id)= c.name
   br
-  a(href="/users/new") New User
+  a(href="/courses/new") New Course

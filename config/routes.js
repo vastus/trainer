@@ -26,8 +26,9 @@ module.exports = function (app, routes, tasks, users, databases, courses) {
     /**
      * Course routes
      */
+    app.get('/courses', courses.index);
     app.get('/courses/new', courses.newCourse);
-
+    app.post('/courses', courses.createCourse);
     /**
      * Database routes.
      */

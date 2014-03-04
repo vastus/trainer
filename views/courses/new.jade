@@ -3,9 +3,9 @@ block content
   #new-course
     form(id="form", action="/courses", method="POST")
       .field Nimi
-        input(name="username", value=username)
+        input(name="name", value=name)
       .field Kuvaus
-        textarea(name="description", rows="3", cols="50")
+        textarea(name="description", rows="3", cols="50")= description
       .field Aktiivinen
         input(name="active", type="checkbox", checked="checked")
       .field

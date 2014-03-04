@@ -15,7 +15,6 @@ var mongoose = require('mongoose'),
  */
 
 exports.index = function(req, res){
-
   Course.find({}, function (err, courses) {
     res.render("courses/index", {courses: courses});
   });
@@ -38,13 +37,12 @@ exports.newCourse = function(req, res){
  * POST users/new
  */
 
-exports.create = function(req, res){
-  //console.log(req.body);
-  var name = req.body.username;
-  var description = req.body.password;
+exports.createCourse = function(req, res){
+  var name = req.body.name;
+  var description = req.body.description;
   var active = req.body.active;
   Database.find({_id: req.params.database}, function(err, database){
-    var course = new Course({name: name, description: description, active: active, database: database});
+    var course = new Course({name: name, description: description, active: active, database: database[0]});
     course.save(function (err, course) {
       if (err) return console.error(err);
       res.redirect('courses');
