@@ -10,13 +10,19 @@ html
     script(src='/javascripts/codemirror-compressed.js')
     script(src='/javascripts/codemirror-editor.js')
   body
+
     header
-        .navibar
-          a(href="/users") |   users  |
-          a(href="/tasks") |   tasks  |
-          a(href="/courses") |   courses  |
         h1
           a(href="/") Raineri
+
+    nav.navibar
+      a(href="/users") users
+      |  |  
+      a(href="/tasks") tasks
+      |  |  
+      a(href="/courses") courses
+      |  |  
+      a(href="/databases") databases
 
 
     #torso
