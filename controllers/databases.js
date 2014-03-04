@@ -1,8 +1,9 @@
 var fs = require('fs');
 var sqlite3 = require('sqlite3').verbose();
-var db = new sqlite3.Database('db/course_db/test.db', sqlite3.OPEN_READONLY);
+//var db = new sqlite3.Database('db/course_db/test.db', sqlite3.OPEN_READONLY);
 var mongoose = require('mongoose');
 var Database = mongoose.model('Database');
+var DBDIR = 'db/app_db/';
 
 exports.index = function (req, res) {
     Database.find(function (err, databases) {
@@ -37,7 +38,7 @@ exports.createDatabase = function (req, res) {
 };
 
 function saveDBFile(filename) {
-    var filepath = 'db/course_db/' + filename + '.db';
+    var filepath = DBDIR + filename + '.db';
     if (fs.existsSync(filepath)) {
         fs.unlinkSync(filepath)
     } else {

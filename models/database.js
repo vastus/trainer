@@ -1,6 +1,6 @@
-var mongoose = require('mongoose'),
-    Schema = mongoose.Schema;
-    // crypto = require('crypto');
+var mongoose = require('mongoose');
+var Schema = mongoose.Schema;
+var DBDIR = 'db/app_db/';
 
 var schema = new Schema({
     name: { type: String, default: '' },
@@ -9,9 +9,8 @@ var schema = new Schema({
 
 schema.methods = {
     execute: function execute(query, cb) {
-                 console.log('in schema exec');
         var sqlite3 = require('sqlite3').verbose();
-        var db = new sqlite3.Database('db/course_db/' + this.name + '.db');
+        var db = new sqlite3.Database(DBDIR + this.name + '.db');
 
         db.serialize(function() {
             console.log('in serialize');
