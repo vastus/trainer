@@ -1,16 +1,24 @@
-module.exports = function (app, routes, tasks, users, databases, courses) {
+var controllers = require('../controllers');
+var tasks = require('../controllers/tasks');
+var users = require('../controllers/users');
+var databases = require('../controllers/databases');
+var courses = require('../controllers/courses');
+
+
+module.exports = function (app) {
     /**
      * Index routes.
      */
-    app.get('/', routes.index);
+    app.get('/', controllers.index);
 
     /**
      * Task routes.
      */
     app.get('/tasks', tasks.index);
     app.get('/tasks/new', tasks.newTask);
-    app.get('/tasks/:id', tasks.showTask);
     app.get('/tasks/:id/execute', tasks.executeTask);
+    app.get('/tasks/:id', tasks.showTask);
+
 
     app.post('/tasks', tasks.createTask);
 

@@ -26,7 +26,11 @@ exports.index = function (req, res) {
  * GET tasks/:id
  */
 exports.showTask = function (req, res) {
-    res.render('tasks/show.jade', {error: null, cols: [], rows: []});
+  Task.find({_id: req.params.id}, function (err, task){
+//    console.log(task);
+//    res.send(task[0]);
+    res.render('tasks/show', {task: task[0], error: null, cols: [], rows: []})
+  });
 };
 
 
@@ -34,18 +38,25 @@ exports.showTask = function (req, res) {
  * GET tasks/:id/execute
  */
 exports.executeTask = function (req, res) {
+  console.log("asdasd");
     var id = req.params.id;
     var query = req.query.task_query;
     db.serialize(function() {
-        db.all(query, function(err, rows) {
-            if (err) {
-                res.render('tasks/show.jade', {error: err, cols: [], rows: []});
+        db.all(query, function(err1, rows) {
+            if (err1) {
+                //ks. task.showTask
+                Task.find({_id: req.params.id}, function (err2, task){
+                  res.render('tasks/show', {task: task[0], error: err1, cols: [], rows: []})
+                });
             } else {
                 var cols = [];
                 for (var col in rows[0]) {
                     cols.push(col);
                 }
-                res.render('tasks/show.jade', {error: null, cols: cols, rows: rows});
+                //ks task.showTask
+                Task.find({_id: req.params.id}, function (err, task){
+                  res.render('tasks/show', {task: task[0], error: err, cols: cols, rows: rows})
+                });
             }
         });
     });
