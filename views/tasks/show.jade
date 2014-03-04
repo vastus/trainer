@@ -1,0 +1,26 @@
+extends ../layout
+block content
+  h1= task.name
+  p= task.description
+  #tasks
+    form(id="form", action="/tasks/#{task._id}/execute", method="GET")
+      .field(style="width:750px;")
+        textarea(class="code", name="task_query", cols="80", rows="24")
+          = "SELECT * FROM ptype;"
+      .field
+        input(type="submit", value="Send")
+  #errors
+    p= error
+  #results
+    table
+      thead
+        tr
+          if cols
+            - each col in cols
+              th= col
+      tbody
+        if rows
+          - each row in rows
+            tr
+              - each col in cols
+                td= row[col]

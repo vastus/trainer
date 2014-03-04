@@ -36,7 +36,7 @@ exports.newUser = function(req, res){
  * POST users/new
  */
 
-exports.create = function(req, res){
+exports.createUser = function(req, res){
   //console.log(req.body);
   var username = req.body.username;
   var password = req.body.password;
@@ -50,8 +50,18 @@ exports.create = function(req, res){
   var newuser = new User({username: username, password: password});
 
   //Save to db
-  newuser.save(function (err, fluffy) {
+  newuser.save(function (err, user) {
     if (err) return console.error(err);
     res.redirect('users');
   });
 }
+
+
+/*
+ * GET users/:id
+ */
+exports.showUser = function(req, res){
+  User.find({username: req.params.id}, function (err, user) {
+    res.render('users/show', {user: user});
+    });
+};

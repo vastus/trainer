@@ -1,24 +1,21 @@
 extends ../layout
+
 block content
-  #tasks
-    form(id="form", action="/tasks/1/execute", method="GET")
-      .field(style="width:750px;")
-        textarea(class="code", name="task_query", cols="80", rows="24")
-          = "SELECT * FROM ptype;"
-      .field
-        input(type="submit", value="Send")
-  #errors
-    p= error
+  h1 Tasks
+
   #results
     table
       thead
-        tr
-          if cols
-            - each col in cols
-              th= col
+        if tasks
+          tr
+            th name
       tbody
-        if rows
-          - each row in rows
+        if tasks
+          - each t in tasks
             tr
-              - each col in cols
-                td= row[col]
+              td
+                a(href="/tasks/#{t._id}")
+                  = t.name
+
+  br
+  a(href="/tasks/new") New Task

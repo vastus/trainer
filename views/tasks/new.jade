@@ -4,7 +4,7 @@ block content
     h2 Create a Task
     form(action="/tasks", method="POST")
       .field
-        label(for="task_name") Name 
+        label(for="task_name") Name
         br
         input(id="task_name", type="text", name="task[name]")
       .field
@@ -14,7 +14,7 @@ block content
       .field
         label(for="task_query") SQL Query
         br
-        textarea(id="task_description", name="task[description]", cols="80", rows="5")
+        textarea(id="task_description", name="task[query]", cols="80", rows="5")
       .button
         input(type="submit", value="Create")
 
