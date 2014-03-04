@@ -7,13 +7,20 @@ var mongoose = require('mongoose'),
 var sqlite3 = require('sqlite3').verbose();
 var db = new sqlite3.Database('db/course_db/test.db', sqlite3.OPEN_READONLY);
 
+
 /*
  * GET tasks
  */
 
 exports.index = function (req, res) {
-  res.render('tasks/index')
+
+  Task.find({}, function (err, tasks) {
+    res.render("tasks/index", {tasks: tasks});
+//    console.log(tasks);
+    });
 };
+
+
 
 /*
  * GET tasks/:id
@@ -58,9 +65,9 @@ exports.newTask = function (req, res) {
 
 exports.createTask = function (req, res) {
   console.log(req.body);
-  var taskname = req.body.task_name;
-  var description = req.body.task_description;
-  var query = req.body.task_query;
+  var taskname = req.body.task.name;
+  var description = req.body.task.description;
+  var query = req.body.task.query;
 
   //Create task from Task proto
   var newtask = new Task({name: taskname, description: description, correct_query: query});
@@ -69,6 +76,6 @@ exports.createTask = function (req, res) {
   //Save to db
   newtask.save(function (err, task) {
     if (err) return console.error(err);
-    res.redirect('tasks/index');
+    res.redirect('tasks');
   });
 }

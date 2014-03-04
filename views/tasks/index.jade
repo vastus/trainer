@@ -1,3 +1,19 @@
 extends ../layout
+
 block content
-  p This is task index, not show task
+  h1 Tasks
+
+  #results
+    table
+      thead
+        if tasks
+          tr
+            th name
+      tbody
+        if tasks
+          - each t in tasks
+            tr
+              td= t.name
+
+  br
+  a(href="/tasks/new") New Task
