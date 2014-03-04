@@ -1,6 +1,13 @@
 extends ../layout
 block content
   #databases
+    h1 Databases
     - each db in databases
-      p= db.name
+      .database
+        p.name
+          a(href="/databases/#{db._id}")= db.name
+    hr
+    .actions
+      p
+        a(href="#") New Database
 
