@@ -41,12 +41,18 @@ exports.createCourse = function(req, res){
   var name = req.body.name;
   var description = req.body.description;
   var active = req.body.active;
-  Database.find({_id: req.params.database}, function(err, database){
-    var course = new Course({name: name, description: description, active: active, database: database[0]});
-    course.save(function (err, course) {
-      if (err) return console.error(err);
-      res.redirect('courses');
-    });
+  Database.findOne({_id: req.body.database}, function(err, database){
+    if(err){
+      console.log(err);
+      res.render("courses/new");
+    }else{
+      
+      var course = new Course({name: name, description: description, active: active, database: database});
+      course.save(function (err, course) {
+        if (err) return console.error(err);
+        res.redirect('courses');
+      });
+    }
   });
 }
 
