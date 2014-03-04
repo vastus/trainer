@@ -9,8 +9,9 @@ module.exports = function (app, routes, tasks, users, databases) {
      */
     app.get('/tasks', tasks.index);
     app.get('/tasks/new', tasks.newTask);
-    app.get('/tasks/:id', tasks.showTask);
     app.get('/tasks/:id/execute', tasks.executeTask);
+    app.get('/tasks/:id', tasks.showTask);
+
 
     app.post('/tasks', tasks.createTask);
 

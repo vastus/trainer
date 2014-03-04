@@ -13,7 +13,9 @@ block content
         if tasks
           - each t in tasks
             tr
-              td= t.name
+              td
+                a(href="/tasks/#{t._id}")
+                  = t.name
 
   br
   a(href="/tasks/new") New Task
