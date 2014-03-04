@@ -55,12 +55,13 @@ var controllers = require('./controllers');
 var tasks = require('./controllers/tasks');
 var users = require('./controllers/users');
 var databases = require('./controllers/databases');
+var courses = require('./controllers/courses');
 
 //express.js settings, params app, __dirname
 require('./config/express')(app, __dirname);
 
 //routes.js params app, routes, tasks
-require('./config/routes')(app, controllers, tasks, users, databases);
+require('./config/routes')(app, controllers, tasks, users, databases, courses);
 
 
 /**

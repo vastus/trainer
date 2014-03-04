@@ -1,4 +1,4 @@
-module.exports = function (app, routes, tasks, users, databases) {
+module.exports = function (app, routes, tasks, users, databases, courses) {
     /**
      * Index routes.
      */
@@ -22,6 +22,11 @@ module.exports = function (app, routes, tasks, users, databases) {
     app.get('/users/new', users.newUser);
     app.get('/users/:id', users.showUser);
     app.post('/users', users.createUser);
+
+    /**
+     * Course routes
+     */
+    app.get('/courses/new', courses.newCourse);
 
     /**
      * Database routes.
