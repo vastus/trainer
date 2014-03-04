@@ -1,0 +1,18 @@
+extends ../layout
+block content
+  #new-course
+    form(id="form", action="/courses", method="POST")
+      .field Nimi
+        input(name="username", value=username)
+      .field Kuvaus
+        textarea(name="description", rows="3", cols="50")
+      .field Aktiivinen
+        input(name="active", type="checkbox", checked="checked")
+      .field
+        select(name="database")
+          for database in databases
+            option(value=database._id)=database.name
+      .field
+        input(type="submit", value="Luo kurssi")
+  #errors
+    p= error
