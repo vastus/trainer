@@ -36,7 +36,7 @@ exports.newUser = function(req, res){
  * POST users/new
  */
 
-exports.create = function(req, res){
+exports.createUser = function(req, res){
   //console.log(req.body);
   var username = req.body.username;
   var password = req.body.password;
@@ -55,3 +55,21 @@ exports.create = function(req, res){
     res.redirect('users');
   });
 }
+
+
+/*
+ * GET users/show/:id
+ */
+exports.showUser = function(req, res){
+//  res.render('users/show', {user: User.find({_id: req.params.id})});
+//  console.log(User.find({_id: req.params.id}));
+//  console.log(require('util').inspect(User.find({_id: req.params.id})));
+//  res.send(User.find({_id: req.params.id}));
+
+
+  User.find({username: req.params.id}, function (err, user) {
+    res.render('users/show', {user: user});
+    });
+
+
+};

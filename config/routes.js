@@ -19,7 +19,8 @@ module.exports = function (app, routes, tasks, users, databases) {
      */
     app.get('/users', users.index);
     app.get('/users/new', users.newUser);
-    app.post('/users', users.create);
+    app.get('/users/:id', users.showUser);
+    app.post('/users', users.createUser);
 
     /**
      * Database routes.
