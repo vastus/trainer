@@ -50,7 +50,7 @@ exports.createUser = function(req, res){
   var newuser = new User({username: username, password: password});
 
   //Save to db
-  newuser.save(function (err, fluffy) {
+  newuser.save(function (err, user) {
     if (err) return console.error(err);
     res.redirect('users');
   });
