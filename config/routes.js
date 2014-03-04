@@ -7,11 +7,12 @@ module.exports = function (app, routes, tasks, users, databases) {
     /**
      * Task routes.
      */
+    app.get('/tasks', tasks.index);
+    app.get('/tasks/new', tasks.newTask);
     app.get('/tasks/:id', tasks.showTask);
     app.get('/tasks/:id/execute', tasks.executeTask);
 
-    app.get('/tasks/new', tasks.newTask);
-    // app.post('/tasks', tasks.createTask);
+    app.post('/tasks', tasks.createTask);
 
 
     /**

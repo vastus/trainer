@@ -58,18 +58,10 @@ exports.createUser = function(req, res){
 
 
 /*
- * GET users/show/:id
+ * GET users/:id
  */
 exports.showUser = function(req, res){
-//  res.render('users/show', {user: User.find({_id: req.params.id})});
-//  console.log(User.find({_id: req.params.id}));
-//  console.log(require('util').inspect(User.find({_id: req.params.id})));
-//  res.send(User.find({_id: req.params.id}));
-
-
   User.find({username: req.params.id}, function (err, user) {
     res.render('users/show', {user: user});
     });
-
-
 };
