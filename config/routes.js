@@ -22,7 +22,6 @@ module.exports = function (app) {
 
     app.post('/tasks', tasks.createTask);
 
-
     /**
      * User routes.
      */
@@ -40,6 +39,8 @@ module.exports = function (app) {
     /**
      * Database routes.
      */
+    app.get('/databases', databases.index);
     app.get('/databases/new', databases.newDatabase);
+    app.post('/databases', databases.createDatabase);
 };
 
