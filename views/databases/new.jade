@@ -1,0 +1,15 @@
+extends ../layout
+block layout
+  #database.new
+    form(action="/databases", method="POST")
+      .field
+        label(for="database_name") Name
+        br
+        input(id="database_name", name="database[name]", size="40")
+      .field
+        label(for="database_sql") SQL
+        br
+        textarea(id="database_sql", name="database[sql]", cols="40", rows="10")
+      .button
+        input(type="submit", value="Create")
+
