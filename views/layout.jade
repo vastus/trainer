@@ -23,10 +23,12 @@ html
       a(href="/courses") courses
       |  |  
       a(href="/databases") databases
-      |  |  
-      a(href="/login") login
-      |  |  
-      a(href="/logout") logout
+      if currentUser
+        |  |  
+        a(href="/logout") logout
+      else
+        |  |  
+        a(href="/login") login
 
     #torso
       block content
