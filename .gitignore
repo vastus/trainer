@@ -1,4 +1,7 @@
-*.swp
 node_modules/
-nohup.out
 db/app_db/
+
+*.swp
+nohup.out
+.DS_Store
+
