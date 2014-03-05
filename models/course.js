@@ -37,9 +37,10 @@ var CourseSchema = new Schema({
  * Methods - public API
  */
 
-//TaskSchema.methods = {
-//  check: function check(query){
-//  }
-//};
+CourseSchema.methods = {
+  check: function check(query){
+  }
+
+};
 
 mongoose.model('Course', CourseSchema);

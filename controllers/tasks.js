@@ -67,7 +67,7 @@ exports.executeTask = function (req, res) {
  * GET users/new
  */
 exports.newTask = function (req, res) {
-    res.render('tasks/new.jade');
+    res.render('tasks/new.jade', {course_id: req.params.id});
 };
 
 /*
@@ -75,18 +75,24 @@ exports.newTask = function (req, res) {
  */
 
 exports.createTask = function (req, res) {
-  console.log(req.body);
   var taskname = req.body.task.name;
   var description = req.body.task.description;
   var query = req.body.task.query;
+  var course = req.body.task.course_id;
 
   //Create task from Task proto
-  var newtask = new Task({name: taskname, description: description, correct_query: query});
+  var newtask = new Task({name: taskname, description: description, correct_query: query, course: course});
 
 
   //Save to db
   newtask.save(function (err, task) {
     if (err) return console.error(err);
+
+    mongoose.model('Course').findOne({_id: course}, function(err, course){
+      course.tasks.push(task);
+      course.save();
+    });
+
     res.redirect('tasks');
   });
 }

@@ -3,6 +3,7 @@ block content
   #task.new
     h2 Create a Task
     form(action="/tasks", method="POST")
+      input(type="hidden", value="#{course_id}", name="task[course_id]")
       .field
         label(for="task_name") Name
         br
@@ -14,7 +15,7 @@ block content
       .field
         label(for="task_query") SQL Query
         br
-        textarea(id="task_description", name="task[query]", cols="80", rows="5")
+        textarea(id="task_description", class="code", name="task[query]", cols="80", rows="5")
       .button
         input(type="submit", value="Create")
 

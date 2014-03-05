@@ -18,8 +18,6 @@ module.exports = function (app) {
     app.get('/tasks/new', tasks.newTask);
     app.get('/tasks/:id/execute', tasks.executeTask);
     app.get('/tasks/:id', tasks.showTask);
-
-
     app.post('/tasks', tasks.createTask);
 
     /**
@@ -36,6 +34,7 @@ module.exports = function (app) {
     app.get('/courses', courses.index);
     app.get('/courses/new', courses.newCourse);
     app.post('/courses', courses.createCourse);
+    app.get('/courses/:id/tasks/new', tasks.newTask);
     app.get('/courses/:id', courses.showCourse);
 
     /**
