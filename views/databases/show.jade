@@ -2,7 +2,7 @@ extends ../layout
 block content
   #database
     h1= database.name
-    .schema
-      h3 Sql used to for this database
-      = database.sql
-
+    ul
+      each row in rows
+        li
+          a(href="/databases/#{database._id}/table/#{row.name}")=row.name

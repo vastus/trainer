@@ -1,0 +1,15 @@
+extends ../layout
+block content
+  #database
+    h1= database.name
+    table
+      thead
+        each col in cols
+          th= col
+      tbody
+        each row in rows
+          tr
+            each col in row
+              td=col
+  p= rows
+  p= err
