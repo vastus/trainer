@@ -4,8 +4,7 @@ var mongoose = require('mongoose'),
 
 
 
-var sqlite3 = require('sqlite3').verbose();
-var db = new sqlite3.Database('db/course_db/test.db', sqlite3.OPEN_READONLY);
+
 
 
 /*
@@ -38,26 +37,19 @@ exports.showTask = function (req, res) {
  * GET tasks/:id/execute
  */
 exports.executeTask = function (req, res) {
-  console.log("asdasd");
-    var id = req.params.id;
-    var query = req.query.task_query;
-    db.serialize(function() {
-        db.all(query, function(err1, rows) {
-            if (err1) {
-                //ks. task.showTask
-                Task.find({_id: req.params.id}, function (err2, task){
-                  res.render('tasks/show', {task: task[0], error: err1, cols: [], rows: []})
-                });
-            } else {
-                var cols = [];
-                for (var col in rows[0]) {
-                    cols.push(col);
-                }
-                //ks task.showTask
-                Task.find({_id: req.params.id}, function (err, task){
-                  res.render('tasks/show', {task: task[0], error: err, cols: cols, rows: rows})
-                });
-            }
+  Task.findOne({_id: req.params.id})
+    .populate('course')
+    .exec(function(err, task){
+      mongoose.model('Database')
+        .findOne({_id: task.course.database}, function(err, db){
+          if(err) console.log(err);
+          db.query(req.query.task_query, function(err, cols, rows){
+            res.render('tasks/show', {task: task,
+                                      error: err,
+                                      cols: cols,
+                                      rows: rows,
+                                      query: req.query.task_query });
+          });
         });
     });
 };

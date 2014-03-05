@@ -6,7 +6,7 @@ block content
     form(id="form", action="/tasks/#{task._id}/execute", method="GET")
       .field(style="width:750px;")
         textarea(class="code", name="task_query", cols="80", rows="24")
-          = "SELECT * FROM ptype;"
+          =query
       .field
         input(type="submit", value="Send")
   #errors
