@@ -5,3 +5,12 @@ body {
 a {
   color: #00b7ff;
 }
+label {
+  color: #666;
+  margin-bottom: 0.2em;
+  display: inline-block;
+}
+input,
+textarea {
+  margin-bottom: 1em;
+}
