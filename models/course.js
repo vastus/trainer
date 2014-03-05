@@ -14,7 +14,7 @@ var CourseSchema = new Schema({
   name: { type: String, default: '' },
   description: { type: String, default: 'no description'},
   active: { type: Boolean, default: true},
-  course: { type: Schema.ObjectId, ref: 'Database' },
+  database: { type: Schema.ObjectId, ref: 'Database' },
   tasks: [{ type: Schema.ObjectId, ref: 'Task' }]
 });
 
