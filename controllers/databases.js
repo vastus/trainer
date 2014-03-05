@@ -12,6 +12,12 @@ exports.index = function (req, res) {
     });
 };
 
+exports.showDatabase = function (req, res) {
+    Database.findOne({ _id: req.params.id }, function (err, database) {
+        res.render('databases/show', { database: database });
+    });
+};
+
 exports.newDatabase = function (req, res) {
     res.render('databases/new');
 };

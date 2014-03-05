@@ -1,0 +1,8 @@
+extends ../layout
+block content
+  #database
+    h1= database.name
+    .schema
+      h3 Sql used to for this database
+      = database.sql
+

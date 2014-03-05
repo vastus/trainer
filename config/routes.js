@@ -43,6 +43,7 @@ module.exports = function (app) {
      */
     app.get('/databases', databases.index);
     app.get('/databases/new', databases.newDatabase);
+    app.get('/databases/:id', databases.showDatabase);
     app.post('/databases', databases.createDatabase);
 };
 
