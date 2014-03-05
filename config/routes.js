@@ -1,8 +1,10 @@
+var mongoose = require('mongoose');
 var controllers = require('../controllers');
 var tasks = require('../controllers/tasks');
 var users = require('../controllers/users');
 var databases = require('../controllers/databases');
 var courses = require('../controllers/courses');
+var sessions = require('../controllers/sessions')(mongoose);
 
 
 module.exports = function (app) {
@@ -44,5 +46,12 @@ module.exports = function (app) {
     app.get('/databases/new', databases.newDatabase);
     app.get('/databases/:id', databases.showDatabase);
     app.post('/databases', databases.createDatabase);
+
+    /**
+     * Session routes.
+     */
+    app.get('/login', sessions.newSession);
+    app.post('/login', sessions.createSession);
+    app.get('/logout', sessions.destroySession);
 };
 
