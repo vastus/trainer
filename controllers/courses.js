@@ -61,7 +61,7 @@ exports.createCourse = function(req, res){
  * GET users/show/:id
  */
 exports.showCourse = function(req, res){
-  Course.find({_id: req.params.id}, function (err, course) {
+  Course.findOne({_id: req.params.id}).populate('tasks').exec(function (err, course) {
     res.render('courses/show', {course: course});
   });
 };

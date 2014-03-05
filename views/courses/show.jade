@@ -1,6 +1,12 @@
 extends ../layout
 block content
+  h1= course.name
+  p= course.description
+  ul
+    each task in course.tasks
+      li 
+        a(href="/tasks/#{task._id}")= task.name
   p= course
   br
   p
-    a(href="/courses/#{course[0]._id}/tasks/new") Add task
+    a(href="/courses/#{course._id}/tasks/new") Add task

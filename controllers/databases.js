@@ -14,7 +14,10 @@ exports.index = function (req, res) {
 
 exports.showDatabase = function (req, res) {
     Database.findOne({ _id: req.params.id }, function (err, database) {
-        res.render('databases/show', { database: database });
+        database.query("SELECT * FROM sqlite_master WHERE type='table';", function(err, cols, rows){
+            console.log(rows);
+            res.render('databases/show', { database: database, rows: rows });
+        });
     });
 };
 
@@ -42,6 +45,15 @@ exports.createDatabase = function (req, res) {
         });
     });
 };
+
+exports.showTable = function(req, res){
+    Database.findOne({_id: req.params.id}, function(err, database){
+        console.log(req.params);
+        database.query("SELECT * FROM " + req.params.table, function(err, cols, rows){
+            res.render('databases/table', {database: database, err: err, cols:cols, rows:rows});
+        });
+    });
+}
 
 function saveDBFile(filename) {
     var filepath = DBDIR + filename + '.db';
