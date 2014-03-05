@@ -1,20 +1,14 @@
 /**
  * Module dependencies.
  */
-
 var express = require('express');
 var fs = require('fs');
-
-
 var mongo = require('mongodb');
 var mongoose = require('mongoose');
-
 
 /**
  * MongoDB
  */
-
-// Connect to mongodb
 var connect = function () {
   var options = { server: { socketOptions: { keepAlive: 1 } } }
   mongoose.connect('mongodb://localhost/trainerdb', options);
@@ -31,11 +25,9 @@ mongoose.connection.on('disconnected', function () {
   connect();
 });
 
-
 /**
  * Models
  */
-
 var models_path = __dirname + '/models';
 
 fs.readdirSync(models_path).forEach(function (file) {
@@ -43,11 +35,9 @@ fs.readdirSync(models_path).forEach(function (file) {
     require(models_path + '/' + file)
 });
 
-
 /**
  * Config
  */
-
 var app = express();
 
 //express.js settings, params app, __dirname
@@ -56,13 +46,10 @@ require('./config/express')(app, __dirname);
 //routes.js params app, routes, tasks
 require('./config/routes')(app);
 
-
 /**
  * Launch
  */
-
-//http://stackoverflow.com/questions/17696801/express-js-app-listen-vs-server-listen
+// http://stackoverflow.com/questions/17696801/express-js-app-listen-vs-server-listen
 app.listen(app.get('port'));
 console.log("Server running");
-
 
