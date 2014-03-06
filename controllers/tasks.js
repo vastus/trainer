@@ -81,6 +81,7 @@ exports.executeTask = function (req, res) {
                                           });
                                      });
                 } else {
+                  //yes, you can see copypaste code below. Deal with it. Fix it. asdkajsdlkasj
                   res.render('tasks/show', {task: task,
                                           error: err,
                                           cols: cols,
