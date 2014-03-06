@@ -80,6 +80,14 @@ exports.executeTask = function (req, res) {
                                           success: bool
                                           });
                                      });
+                } else {
+                  res.render('tasks/show', {task: task,
+                                          error: err,
+                                          cols: cols,
+                                          rows: rows,
+                                          query: req.query.task_query,
+                                          success: bool
+                                          });
                 }
 //gotta love this shit.
               });
