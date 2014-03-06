@@ -46,7 +46,8 @@ exports.executeTask = function (req, res) {
           db.query(req.query.task_query, function(err, cols, rows){
             if(err) res.render('tasks/show', {error: err,
                                               task: task,
-                                              query: req.query.task_query});
+                                              query: req.query.task_query,
+                                              success: false});
             else{
               task.check(cols, rows, function(err, bool){
                 res.render('tasks/show', {task: task,
