@@ -8,17 +8,23 @@ var schema = new Schema({
 });
 
 schema.methods = {
-  execute: function execute(query, cb) {
-    var sqlite3 = require('sqlite3').verbose();
-    var db = new sqlite3.Database(DBDIR + this.name + '.db');
+    execute: function execute(query, cb) {
+        var sqlite3 = require('sqlite3').verbose();
+        var db = new sqlite3.Database(DBDIR + this.name + '.db');
+        var commands = query.split(';');
 
-    db.serialize(function() {
-      console.log('in serialize');
-      db.run(query);
-      db.close();
-      return cb(null);
-    });
-  },
+        db.serialize(function() {
+            for (var i = 0; i < commands.length; i++) {
+                var command = commands[i].trim();
+                if (command.length < 1) {
+                    continue;
+                }
+                db.run(command);
+            }
+            db.close();
+            return cb(null);
+        });
+    },
 
   query: function query(query, cb){
     var sqlite3 = require('sqlite3').verbose();
