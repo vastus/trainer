@@ -1,18 +1,12 @@
 /**
  * Module dependencies.
  */
-
 var mongoose = require('mongoose'),
     User = mongoose.model('User');
-
-
-
-
 
 /*
  * GET users
  */
-
 exports.index = function(req, res){
 
   User.find({}, function (err, users) {
@@ -26,7 +20,6 @@ exports.index = function(req, res){
 /*
  * GET users/new
  */
-
 exports.newUser = function(req, res){
   res.render("users/new");
 }
@@ -35,7 +28,6 @@ exports.newUser = function(req, res){
 /*
  * POST users/new
  */
-
 exports.createUser = function(req, res){
   //console.log(req.body);
   var username = req.body.username;
