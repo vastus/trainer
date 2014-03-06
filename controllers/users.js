@@ -49,11 +49,14 @@ exports.createUser = function(req, res){
 }
 
 
-/*
+/* SHOW
  * GET users/:id
  */
 exports.showUser = function(req, res){
-  User.find({username: req.params.id}, function (err, user) {
-    res.render('users/show', {user: user});
+  User.findOne({username: req.params.id})
+      .populate('tasks')
+      .exec( function (err, user) {
+        //res.send(user.tasks[0]);
+        res.render('users/show', {user: user, tasks: user.tasks[0]});
     });
 };

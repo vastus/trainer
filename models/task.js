@@ -67,7 +67,11 @@ TaskSchema.methods = {
     console.log("marking...");
     newCompletedTask.save(function(err, task){
       if(err) return cb(err);
-      return cb(err, true);
+      user.tasks.push(task);
+      user.save(function(err, user){
+        console.log("user saved too.");
+        return cb(err, true);
+      });
     });
   }
 
