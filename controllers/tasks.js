@@ -36,27 +36,52 @@ exports.showTask = function (req, res) {
 /*
  * GET tasks/:id/execute
  */
+
+//the following code is 100% shit but it works.
+
+
+//wait for it...
+
+
+//here we go:
 exports.executeTask = function (req, res) {
+  //find task, populate its course field
   Task.findOne({_id: req.params.id})
     .populate('course')
     .exec(function(err, task){
+      //task found, now find it's course's database
       mongoose.model('Database')
         .findOne({_id: task.course.database}, function(err, db){
           if(err) console.log(err);
+          //db found, run user query
           db.query(req.query.task_query, function(err, cols, rows){
             if(err) res.render('tasks/show', {error: err,
                                               task: task,
                                               query: req.query.task_query,
                                               success: false});
             else{
+              //no errors!! wow!! such SQL!!! now check the answer.
               task.check(cols, rows, function(err, bool){
-                res.render('tasks/show', {task: task,
+
+                //console.log("debug: " + bool + " " + res.locals.currentUser);
+                if(bool && res.locals.currentUser){
+                  //console.log("correct!");
+
+                  //mark this task completed if it was correct
+                  task.markCompleted(res.locals.currentUser,
+                                     task,
+                                     req.query.task_query,
+                                     //render everything - phew !
+                                     function(err,bool){res.render('tasks/show', {task: task,
                                           error: err,
                                           cols: cols,
                                           rows: rows,
                                           query: req.query.task_query,
                                           success: bool
-                                         });
+                                          });
+                                     });
+                }
+//gotta love this shit.
               });
             }
           });
