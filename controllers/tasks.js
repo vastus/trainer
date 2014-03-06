@@ -44,14 +44,23 @@ exports.executeTask = function (req, res) {
         .findOne({_id: task.course.database}, function(err, db){
           if(err) console.log(err);
           db.query(req.query.task_query, function(err, cols, rows){
-            res.render('tasks/show', {task: task,
-                                      error: err,
-                                      cols: cols,
-                                      rows: rows,
-                                      query: req.query.task_query });
+            if(err) res.render('tasks/show', {error: err,
+                                              task: task,
+                                              query: req.query.task_query});
+            else{
+              task.check(cols, rows, function(err, bool){
+                res.render('tasks/show', {task: task,
+                                          error: err,
+                                          cols: cols,
+                                          rows: rows,
+                                          query: req.query.task_query,
+                                          success: bool
+                                         });
+              });
+            }
           });
         });
-    });
+  });
 };
 
 

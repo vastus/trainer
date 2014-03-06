@@ -39,11 +39,38 @@ var TaskSchema = new Schema({
  */
 
 TaskSchema.methods = {
-  check: function check(query){
-    var userans = this.course.db.execute(query);
-    var correct_ans = this.course.db.execute(correct_query);
+  //validates cols and rows with correct_query answer
+  check: function check(userCols, userRows, cb){
+    var thisTask = this;
+    mongoose.model('Course')
+            .findOne({_id: this.course})
+            .populate('database')
+            .exec(function(err, course){
+              //console.log(course.database);
+              //console.log(thisTask.correct_query);
+              course.database.query(thisTask.correct_query, function(err, cols, rows){
+                if(err) return cb(err, false)
 
-    return userans==correct_answer
+                //console.log(userRows);
+                //console.log(rows);
+                //console.log(userCols);
+                //console.log(cols);
+
+
+                if(userCols.toString()==cols.toString()
+                   && userRows.toString() ==rows.toString()){
+                  return cb(err, true);
+                }
+                return cb(err, false);
+              });
+            });
+
+
+    //this.populate('course')
+    //this.course.db.execute(query);
+    //var correct_ans = this.course.db.execute(correct_query);
+
+    //return userans==correct_answer
   }
 };
 

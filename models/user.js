@@ -19,7 +19,8 @@ var mongoose = require('mongoose'),
 var UserSchema = new Schema({
   username: { type: String, default: '' },
   hashed_password: { type: String, default: '' },
-  salt: { type: String, default: '' }
+  salt: { type: String, default: '' },
+  tasks: [Schema.Types.Objectid]
 });
 
 
