@@ -14,6 +14,7 @@ exports.index = function (req, res) {
 
 exports.showDatabase = function (req, res) {
     Database.findOne({ _id: req.params.id }, function (err, database) {
+        if (!database) { res.send(404, 'Database not found'); return; }
         database.query("SELECT * FROM sqlite_master WHERE type='table';", function(err, cols, rows){
             console.log(rows);
             res.render('databases/show', { database: database, rows: rows });
@@ -46,6 +47,20 @@ exports.createDatabase = function (req, res) {
     });
 };
 
+exports.destroyDatabase = function (req, res) {
+    Database.findOne({ _id: req.params.id }, function (err, database) {
+        if (!database) {
+            res.send(404, '404 - Database not found.');
+            return;
+        }
+        deleteDBFile(database.name);
+        database.remove(function (err) {
+            if (err) { res.send(err); return; }
+            res.redirect('/databases');
+        });
+    });
+};
+
 exports.showTable = function(req, res){
     Database.findOne({_id: req.params.id}, function(err, database){
         console.log(req.params);
@@ -53,14 +68,18 @@ exports.showTable = function(req, res){
             res.render('databases/table', {database: database, err: err, cols:cols, rows:rows});
         });
     });
-}
+};
 
 function saveDBFile(filename) {
     var filepath = DBDIR + filename + '.db';
+    deleteDBFile(filename);
+    fs.writeFileSync(filepath, '');
+}
+
+function deleteDBFile(filename) {
+    var filepath = DBDIR + filename + '.db';
     if (fs.existsSync(filepath)) {
-        fs.unlinkSync(filepath)
-    } else {
-        fs.writeFileSync(filepath, '');
+        fs.unlinkSync(filepath);
     }
-};
+}
 

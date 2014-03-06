@@ -47,6 +47,7 @@ module.exports = function (app) {
     app.get('/databases/:id/table/:table', databases.showTable);
     app.get('/databases/:id', databases.showDatabase);
     app.post('/databases', databases.createDatabase);
+    app.get('/databases/:id/destroy', databases.destroyDatabase);
 
     /**
      * Session routes.

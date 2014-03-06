@@ -6,3 +6,7 @@ block content
       each row in rows
         li
           a(href="/databases/#{database._id}/table/#{row.name}")=row.name
+    hr
+    .actions
+      p
+        a(href="/databases/#{database._id}/destroy") Delete this database
