@@ -44,5 +44,17 @@ schema.methods = {
   }
 };
 
-module.exports = mongoose.model('Database', schema);
+var Database = mongoose.model('Database', schema);
+
+/**
+ * Validations.
+ */
+schema.path('name').validate(function (value, done) {
+    Database.count({ name: value }, function (err, count) {
+        if (err) return done(err);
+        done(!count);
+    });
+}, 'Database name exists already. Name must be unique.');
+
+module.exports = Database;
 
