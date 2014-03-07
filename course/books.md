@@ -7,4 +7,5 @@
   * Tuesday - Work on tasks, databases, views. 5 h
   * Wednesday - Sessions, views, code cleaning. 5 h
   * Thursday - Fixing query execution, destroy databases. 4 h
+  * Friday - Database validation, cleaning views + translation. 3.5 h
 
