@@ -1,7 +1,6 @@
 extends ../layout
-
 block content
-  h1 Courses
+  h1 Kurssit
   if courses.length
     #results
       table
@@ -13,5 +12,7 @@ block content
             tr
               td
                 a(href="/courses/"+c._id)= c.name
-  br
-  a(href="/courses/new") New Course
+  hr
+  .actions
+    a(href="/courses/new") Luo uusi kurssi
+
