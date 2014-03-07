@@ -1,21 +1,23 @@
 extends ../layout
 block content
   #task.new
-    h2 Create a Task
+    h1 Luo Tehtävä
     form(action="/tasks", method="POST")
       input(type="hidden", value="#{course_id}", name="task[course_id]")
       .field
-        label(for="task_name") Name
+        label(for="task_name") Nimi
         br
         input(id="task_name", type="text", name="task[name]")
       .field
-        label(for="task_description") Description
+        label(for="task_description") Kuvaus
         br
         textarea(id="task_description", name="task[description]", cols="80", rows="10")
       .field
-        label(for="task_query") SQL Query
+        label(for="task_query")
+          | SQL Query &mdash; Komento, mikä tuottaa
+          | halutun tuloksen
         br
         textarea(id="task_description", class="code", name="task[query]", cols="80", rows="5")
       .button
-        input(type="submit", value="Create")
+        input(type="submit", value="Luo Tehtävä")
 

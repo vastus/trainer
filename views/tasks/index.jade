@@ -1,14 +1,13 @@
 extends ../layout
-
 block content
-  h1 Tasks
+  h1 Tehtävät
 
   #results
     table
       thead
         if tasks
           tr
-            th name
+            th Nimi
       tbody
         if tasks
           - each t in tasks
@@ -16,6 +15,7 @@ block content
               td
                 a(href="/tasks/#{t._id}")
                   = t.name
+  hr
+  .actions
+    a(href="/tasks/new") Luo uusi tehtävä
 
-  br
-  a(href="/tasks/new") New Task

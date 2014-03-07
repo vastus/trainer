@@ -1,14 +1,15 @@
 extends ../layout
 block content
-  h1= task.name
-  p= task.description
-  #tasks
+  #task
+    h1= task.name
+    p= task.description
     form(id="form", action="/tasks/#{task._id}/execute", method="GET")
-      .field(style="width:750px;")
+      .field
         textarea(class="code", name="task_query", cols="80", rows="24")
           =query
-      .field
-        input(type="submit", value="Send")
+      .button
+        input(type="submit", value="Suorita")
+
   #errors
     p= error
   #results
