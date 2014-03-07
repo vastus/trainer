@@ -1,5 +1,10 @@
 extends ../layout
-
 block content
-
-    p= user
+  #user
+    .username
+      h2= user.username
+    .obiwankenobi
+      = user
+    .tasks
+      - for task in user.tasks
+        p= task.answer_query
