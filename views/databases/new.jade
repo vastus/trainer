@@ -1,15 +1,18 @@
 extends ../layout
 block content
   #database.new
+    h1 Luo Tietokanta
     form(action="/databases", method="POST")
       .field
-        label(for="database_name") Name
+        label(for="database_name") Nimi
         br
         input(id="database_name", name="database[name]", size="40")
       .field
-        label(for="database_sql") SQL
+        label(for="database_sql")
+          | SQL &mdash; Syötä tähän SQL-komennot 
+          | (<code>CREATE</code>, <code>INSERT</code>) puolipisteellä erotettuna)
         br
         textarea(id="database_sql", name="database[sql]", cols="40", rows="10", class="code")
       .button
-        input(type="submit", value="Create")
+        input(type="submit", value="Luo tietokanta")
 
