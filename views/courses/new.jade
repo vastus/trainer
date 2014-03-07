@@ -1,18 +1,25 @@
 extends ../layout
 block content
   #new-course
+    h1 Kurssin lisääminen
     form(id="form", action="/courses", method="POST")
-      .field Nimi
-        input(name="name", value=name)
-      .field Kuvaus
-        textarea(name="description", rows="3", cols="50")= description
-      .field Aktiivinen
-        input(name="active", type="checkbox", checked="checked")
       .field
+        label(for="course_name") Nimi
+        br
+        input(name="name", value=name)
+      .field
+        label(for="course_description") Kuvaus
+        br
+        textarea(name="description", rows="10", cols="80")= description
+      .field
+        label(for="course_active") Aktiivinen?
+        input(id="course_active", name="active", type="checkbox", checked="checked")
+      .field
+        label(for="course_database") Tietokanta
         select(name="database")
           for database in databases
             option(value=database._id)=database.name
-      .field
+      .button
         input(type="submit", value="Luo kurssi")
   #errors
     p= error

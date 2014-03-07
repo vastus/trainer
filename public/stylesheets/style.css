@@ -7,10 +7,13 @@ a {
 }
 label {
   color: #666;
-  margin-bottom: 0.2em;
+  margin: 0 0.5em 0.2em 0;
   display: inline-block;
 }
 input,
 textarea {
   margin-bottom: 1em;
+}
+.button {
+  margin-top: 1em;
 }
