@@ -16,21 +16,23 @@ html
           a(href="/") Raineri
 
     nav.navibar
-      a(href="/users") users
+      a(href="/users") Käyttäjät
       |  | 
-      a(href="/tasks") tasks
+      a(href="/tasks") Tehtävät
       |  | 
-      a(href="/courses") courses
+      a(href="/courses") Kurssit
       |  | 
-      a(href="/databases") databases
+      a(href="/databases") Tietokannat
       if currentUser
         |  | 
         a(href="/users/#{currentUser.username}")= currentUser.username
         |  | 
-        a(href="/logout") logout
+        a(href="/logout") Kirjaudu ulos
       else
         |  | 
-        a(href="/login") login
+        a(href="/login") Kirjaudu sisään
+        |  | 
+        a(href="/users/new") Rekisteröidy
 
     #torso
       block content
