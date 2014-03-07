@@ -1,14 +1,22 @@
 extends ../layout
 block content
   #signup
+    h1 Rekisteröidy
     form(id="form", action="/users", method="POST")
-      .fiel="Käyttäjätunnus"
-        input(name="username", value=username)
-      .field="Salasana"
-        input(name="password", type="password")
-      .field="Salasana uudelleen"
-        input(name="password_confirmation", type="password")
       .field
+        label(for="user_username") Käyttäjätunnus
+        br
+        input(id="user_username", name="username", value=username)
+      .field
+        label(for="user_password") Salasana
+        br
+        input(id="user_password", name="password", type="password")
+      .field
+        label(for="user_password_confirmation") Salasana uudelleen
+        br
+        input(id="user_password_confirmation", name="password_confirmation", 
+          type="password")
+      .button
         input(type="submit", value="Rekisteröidy")
   #errors
     p= error
