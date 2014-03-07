@@ -22,10 +22,11 @@ module.exports = function (app, dirname) {
     app.use(helpers.currentUser);
     app.use(app.router);
     app.use(require('stylus').middleware(path.join(dirname, 'public')));
-    app.use(express.static(path.join(dirname, 'public')));
 
     if ('development' == app.get('env')) {
+        // Do not use these in production.
         app.use(express.errorHandler());
+        app.use(express.static(path.join(dirname, 'public')));
     }
 
 };
