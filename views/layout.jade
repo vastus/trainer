@@ -17,19 +17,19 @@ html
 
     nav.navibar
       a(href="/users") users
-      |  |
+      |  | 
       a(href="/tasks") tasks
-      |  |
+      |  | 
       a(href="/courses") courses
-      |  |
+      |  | 
       a(href="/databases") databases
       if currentUser
-        |  |
+        |  | 
         a(href="/users/#{currentUser.username}")= currentUser.username
-        |  |
+        |  | 
         a(href="/logout") logout
       else
-        |  |
+        |  | 
         a(href="/login") login
 
     #torso
