@@ -68,15 +68,15 @@ exports.showUser = function(req, res){
             user.tasks,
             function(item, callback){
               mongoose.model('Task').findOne({_id: item.task}, function(err, task){
-                console.log("task is: " + task);
+                //console.log("task is: " + task);
 
                 var data = {completedTask: item, task: task};
-                console.log("data is: " + data);
+                //console.log("data is: " + data);
                 callback(err, data);
               });
             },
             function(err, result){
-              console.log(result);
+              //console.log(result);
               res.render('users/show', {user: user, tasks: result});
             }
           )

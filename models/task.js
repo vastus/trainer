@@ -4,6 +4,7 @@
 
 var mongoose = require('mongoose'),
     Schema = mongoose.Schema;
+var async = require('async');
 
 /**
  * User Schema
@@ -62,19 +63,45 @@ TaskSchema.methods = {
             });
   },
   markCompleted: function markCompleted(user, task, query, cb){
+    console.log("markCompleted");
     var CompletedTask = mongoose.model('CompletedTask');
-    var newCompletedTask = new CompletedTask({task: task._id, user: user._id, answer_query: query});
-    console.log("marking...");
-    newCompletedTask.save(function(err, task){
-      if(err) return cb(err);
-      user.tasks.push(task);
-      user.save(function(err, user){
-        console.log("user saved too.");
-        return cb(err, true);
-      });
-    });
-  }
+    async.series([
+      function(callback) {
+        CompletedTask.find({user: user.id, task: task.id}, function(err, ctasks){
+          console.log(ctasks);
 
+          for(var i =0; i<ctasks.length; i++){
+            console.log(ctasks[i].answer_query + "   vs.   " + query);
+            ctasks[i].answer_query==query
+            if(ctasks[i].answer_query==query){
+              console.log("not saving!");
+              return callback("duplicate", false);
+            }
+          }
+          return callback(null, true);
+        });
+      },
+
+      function(callback) {
+        var newCompletedTask = new CompletedTask({task: task._id, user: user._id, answer_query: query});
+          newCompletedTask.save(function(err, task){
+            if(err) return cb(err);
+            user.tasks.push(task);
+            user.save(function(err, user){
+              console.log("user saved too.");
+              return callback(err, true);
+            });
+          });
+
+      }
+    ],
+      //callback
+      function(err, results){
+        console.log(err);
+        //return like everything normal, controller does not need to know what just happened
+        cb(null, true);
+      });
+  }
 };
 
 mongoose.model('Task', TaskSchema);
