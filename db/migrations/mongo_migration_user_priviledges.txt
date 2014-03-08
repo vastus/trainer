@@ -1,0 +1,8 @@
+
+//create priviledges field to all users and set it to 1 (default)
+
+db.users.update({},{$set : {"priviledges":1}},{upsert:false,multi:true})
+
+//change user ELN priviledges to 3 (admin)
+db.users.update( {username: "ELN"}, {$set: { priviledges: 3 }}, {upsert:false, multi:false})
+		

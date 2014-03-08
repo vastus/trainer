@@ -1,0 +1,1 @@
+These are not real migrations, files contain code to be run manually by hand
