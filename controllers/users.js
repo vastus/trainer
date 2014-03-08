@@ -45,7 +45,7 @@ exports.createUser = function(req, res){
   //Save to db
   newuser.save(function (err, user) {
     if (err) return console.error(err);
-    res.redirect('users');
+    res.redirect('/');
   });
 }
 
