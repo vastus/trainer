@@ -53,11 +53,23 @@ exports.destroyDatabase = function (req, res) {
             res.send(404, '404 - Database not found.');
             return;
         }
-        deleteDBFile(database.name);
-        database.remove(function (err) {
-            if (err) { res.send(err); return; }
+
+        if(res.locals.currentUser
+           && res.locals.currentUser.priviledges > 1){
+
+          deleteDBFile(database.name);
+          database.remove(function (err) {
+            if (err) { console.log(err); }
             res.redirect('/databases');
-        });
+          });
+        }else{
+          //illegal request to destroy db
+          res.sed("permission denied!")
+        }
+
+
+
+
     });
 };
 

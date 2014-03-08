@@ -3,8 +3,8 @@ block content
   #user
     .username
       h2= user.username
-    .obiwankenobi
-      = user
     .tasks
-      - for task in user.tasks
-        p= task.answer_query
+      p Completed tasks:
+      - for task in tasks
+        a(href='/tasks/#{task.task.id}?task_query=#{task.completedTask.answer_query}')= task.task.name
+        br

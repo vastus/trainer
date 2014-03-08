@@ -3,6 +3,7 @@
  */
 var mongoose = require('mongoose'),
     User = mongoose.model('User');
+var async = require('async');
 
 /*
  * GET users
@@ -62,11 +63,25 @@ exports.showUser = function(req, res){
     User.findOne({username: req.params.id})
         .populate('tasks')
         .exec( function (err, user) {
-          //res.send(user.tasks[0]);
-          res.render('users/show', {user: user, tasks: user.tasks[0]});
+
+          async.map(
+            user.tasks,
+            function(item, callback){
+              mongoose.model('Task').findOne({_id: item.task}, function(err, task){
+                console.log("task is: " + task);
+
+                var data = {completedTask: item, task: task};
+                console.log("data is: " + data);
+                callback(err, data);
+              });
+            },
+            function(err, result){
+              console.log(result);
+              res.render('users/show', {user: user, tasks: result});
+            }
+          )
       });
   } else {
     res.send("permission denied");
   }
-
 };

@@ -28,8 +28,15 @@ exports.index = function (req, res) {
  * GET tasks/:id
  */
 exports.showTask = function (req, res) {
-  Task.find({_id: req.params.id}, function (err, task){
-    res.render('tasks/show', {task: task[0], error: null, cols: [], rows: []})
+  Task.findOne({_id: req.params.id}, function (err, task){
+    console.log(req.query.task_query);
+    console.log(req.params.id);
+    if(req.query.task_query){
+//      res.send(req.query.task_query);
+      res.render('tasks/show', {task: task, query: req.query.task_query, error: null, cols: [], rows: []});
+      return;
+    }
+    res.render('tasks/show', {task: task, error: null, cols: [], rows: []})
   });
 };
 

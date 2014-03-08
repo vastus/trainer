@@ -9,7 +9,8 @@
     "sqlite3": "~2.2.0",
     "jade": "~1.2.0",
     "mongoose": "~3.8.8",
-    "mongodb": "*"
+    "mongodb": "*",
+    "async": "~0.2.10"
   },
   "engines": {
     "node": "0.10.x"
