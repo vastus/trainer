@@ -16,8 +16,9 @@ module.exports = function (app) {
     /**
      * Task routes.
      */
-    //tasks index not needed (course/show handels this)
+
     //tasks new not needed (course/:id/tasks/new)
+    app.get('/tasks', tasks.index);
     app.get('/tasks/:id/execute', tasks.executeTask);
     app.get('/tasks/:id', tasks.showTask);
     app.post('/tasks', tasks.createTask);

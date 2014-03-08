@@ -8,15 +8,18 @@ var mongoose = require('mongoose'),
 
 
 /*
- * GET tasks
+ * GET tasks - ONLY FOR ADMIN
  */
 
 exports.index = function (req, res) {
-
-  Task.find({}, function (err, tasks) {
-    res.render("tasks/index", {tasks: tasks});
-//    console.log(tasks);
+  if(res.locals.currentUser && res.locals.currentUser.priviledges==3){
+    Task.find({}, function (err, tasks) {
+      res.render("tasks/index", {tasks: tasks});
     });
+  } else {
+    res.send("permission denied!");
+  }
+
 };
 
 
@@ -26,8 +29,6 @@ exports.index = function (req, res) {
  */
 exports.showTask = function (req, res) {
   Task.find({_id: req.params.id}, function (err, task){
-//    console.log(task);
-//    res.send(task[0]);
     res.render('tasks/show', {task: task[0], error: null, cols: [], rows: []})
   });
 };
@@ -64,6 +65,8 @@ exports.executeTask = function (req, res) {
               task.check(cols, rows, function(err, bool){
 
                 //console.log("debug: " + bool + " " + res.locals.currentUser);
+
+                //if wrong or no current user, don't try to save
                 if(bool && res.locals.currentUser){
                   //console.log("correct!");
 
@@ -81,7 +84,7 @@ exports.executeTask = function (req, res) {
                                           });
                                      });
                 } else {
-                  //yes, you can see copypaste code below. Deal with it. Fix it. asdkajsdlkasj
+                  //not logged in or wrong answer
                   res.render('tasks/show', {task: task,
                                           error: err,
                                           cols: cols,
@@ -100,35 +103,47 @@ exports.executeTask = function (req, res) {
 
 
 /*
- * GET users/new
+ * GET /courses/:id/tasks/new
  */
 exports.newTask = function (req, res) {
+  if(res.locals.currentUser && res.locals.currentUser.priviledges>1){
     res.render('tasks/new.jade', {course_id: req.params.id});
+  } else {
+    res.send("permission denied!");
+  }
 };
 
 /*
- * POST users/new
+ * POST tasks/new
  */
 
 exports.createTask = function (req, res) {
-  var taskname = req.body.task.name;
-  var description = req.body.task.description;
-  var query = req.body.task.query;
-  var course = req.body.task.course_id;
 
-  //Create task from Task proto
-  var newtask = new Task({name: taskname, description: description, correct_query: query, course: course});
+  if(res.locals.currentUser && res.locals.currentUser.priviledges>1){
+
+    var taskname = req.body.task.name;
+    var description = req.body.task.description;
+    var query = req.body.task.query;
+    var course = req.body.task.course_id;
+
+    //Create task from Task proto
+    var newtask = new Task({name: taskname, description: description, correct_query: query, course: course});
 
 
-  //Save to db
-  newtask.save(function (err, task) {
-    if (err) return console.error(err);
+    //Save to db
+    newtask.save(function (err, task) {
+      if (err) return console.error(err);
 
-    mongoose.model('Course').findOne({_id: course}, function(err, course){
-      course.tasks.push(task);
-      course.save();
+      mongoose.model('Course').findOne({_id: course}, function(err, course){
+        course.tasks.push(task);
+        course.save();
+      });
+
+      res.redirect('/courses/' + course);
     });
-
-    res.redirect('tasks');
-  });
+  } else {
+    // someone trying an illegal POST request,
+    //as the legal form is accessible only by priviledges>1
+    res.send("nice try!");
+  }
 }

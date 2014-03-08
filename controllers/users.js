@@ -8,12 +8,13 @@ var mongoose = require('mongoose'),
  * GET users
  */
 exports.index = function(req, res){
-
-  User.find({}, function (err, users) {
-    res.render("users/index", {users: users});
-    console.log(users);
+  if (res.locals.currentUser && res.locals.currentUser.priviledges > 2){
+    User.find({}, function (err, users) {
+      res.render("users/index", {users: users});
     });
-
+  } else {
+    res.send("permission denied");
+  }
 };
 
 
@@ -39,7 +40,7 @@ exports.createUser = function(req, res){
   }
 
   //Create user from User prototype
-  var newuser = new User({username: username, password: password});
+  var newuser = new User({username: username, password: password, priviledges: 1});
 
   //Save to db
   newuser.save(function (err, user) {
@@ -53,10 +54,19 @@ exports.createUser = function(req, res){
  * GET users/:id
  */
 exports.showUser = function(req, res){
-  User.findOne({username: req.params.id})
-      .populate('tasks')
-      .exec( function (err, user) {
-        //res.send(user.tasks[0]);
-        res.render('users/show', {user: user, tasks: user.tasks[0]});
-    });
+
+  //current user pitää olla sama kuin pyydetty, paitsi jos admin (admin saa nähdä kaiken)
+  if((res.locals.currentUser && res.locals.currentUser.username==req.params.id)
+      || (res.locals.currentUser && res.locals.currentUser.priviledges == 3)){
+
+    User.findOne({username: req.params.id})
+        .populate('tasks')
+        .exec( function (err, user) {
+          //res.send(user.tasks[0]);
+          res.render('users/show', {user: user, tasks: user.tasks[0]});
+      });
+  } else {
+    res.send("permission denied");
+  }
+
 };

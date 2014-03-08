@@ -20,7 +20,11 @@ var UserSchema = new Schema({
   username: { type: String, default: '' },
   hashed_password: { type: String, default: '' },
   salt: { type: String, default: '' },
-  tasks: [Schema.Types.Objectid]
+  tasks: [Schema.Types.Objectid],
+  priviledges: {type: Number, default:'1'}
+  //1 or empty -> student (can manage own account)
+  //2 -> teacher (can create course and manage that)
+  //3 -> admin (can do anything)
 });
 
 

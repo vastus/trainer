@@ -12,7 +12,9 @@ block content
             tr
               td
                 a(href="/courses/"+c._id)= c.name
-  hr
-  .actions
-    a(href="/courses/new") Luo uusi kurssi
+  if currentUser
+    if currentUser.priviledges>1
+      hr
+      .actions
+        a(href="/courses/new") Luo uusi kurssi
 

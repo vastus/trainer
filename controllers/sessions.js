@@ -10,7 +10,7 @@ module.exports = function Sessions(mongoose) {
             if (err) { res.send(err); return; }
             if (user && user.authenticate(req.body.password)) {
                 req.session.userId = user._id;
-                res.redirect('/tasks');
+                res.redirect('/');
             } else {
                 res.render('sessions/new');
             }

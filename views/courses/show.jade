@@ -4,9 +4,11 @@ block content
   p= course.description
   ul
     each task in course.tasks
-      li 
+      li
         a(href="/tasks/#{task._id}")= task.name
-  p= course
-  br
-  p
-    a(href="/courses/#{course._id}/tasks/new") Add task
+
+  if currentUser
+    if currentUser.priviledges > 1
+      br
+      p
+      a(href="/courses/#{course._id}/tasks/new") Add task

@@ -16,11 +16,17 @@ html
           a(href="/") Raineri
 
     nav.navibar
-      a(href="/users") Käyttäjät
-      |  |
+      if(currentUser)
+        if(currentUser.priviledges>2)
+          a(href="/users") Käyttäjät
+          |  |
       a(href="/courses") Kurssit
-      |  |
-      a(href="/databases") Tietokannat
+
+
+      if(currentUser)
+        if(currentUser.priviledges>1)
+          |  |
+          a(href="/databases") Tietokannat
       if currentUser
         |  |
         a(href="/users/#{currentUser.username}")= currentUser.username
@@ -31,7 +37,7 @@ html
         a(href="/login") Kirjaudu sisään
         |  |
         a(href="/users/new") Rekisteröidy
-
     #torso
       block content
+
 
