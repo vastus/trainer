@@ -2,16 +2,11 @@ extends ../layout
 block content
   h1 Kurssit
   if courses.length
-    #results
-      table
-        thead
-          tr
-            th name
-        tbody
-          each c in courses
-            tr
-              td
-                a(href="/courses/"+c._id)= c.name
+    .list-group
+    each c in courses
+      a(href="/courses/"+c._id).list-group-item
+        h4.list-group-item-heading= c.name
+        p.list-group-item-text= c.description
   if currentUser
     if currentUser.priviledges>1
       hr

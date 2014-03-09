@@ -61,7 +61,7 @@ exports.createCourse = function(req, res){
  * GET users/show/:id
  */
 exports.showCourse = function(req, res){
-  Course.findOne({_id: req.params.id}).populate('tasks').populate('students').exec(function (err, course) {
+  Course.findOne({_id: req.params.id}).populate('database').populate('tasks').populate('students').exec(function (err, course) {
     var found = false;
     if(res.locals.currentUser){
         for(var i = 0; i < course.students.length; i++){
