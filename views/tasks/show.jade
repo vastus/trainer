@@ -11,7 +11,7 @@ block content
         input(type="submit", value="Suorita")
 
   if error
-    .alert.alert-warning error
+    .alert.alert-warning= error
   else if success
     .alert.alert-success Correct answer!
   else if success==false
