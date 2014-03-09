@@ -21,5 +21,5 @@
   * To: 4h task, completedTask, tehtävien validointi, oikein menneet tehtävät tallennetaan
   * La: 7h "käyttöoikeuksia", tietokantasäätöä, oikein menneet tehtävät muistetaan, näytetään käyttäjäkohtaisesti ja ei duplikaatteja
   * Pe: 1h nginx ja muuta linux-säätöä
-  * Su: 4h mallivastaukset näkymään tehtävänäyttöön, mallivastaukset cacheen
+  * Su: 4h mallivastaukset näkymään tehtävänäyttöön, mallivastaukset cacheen, rankkaa refaktorointia
 
