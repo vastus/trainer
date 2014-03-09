@@ -16,33 +16,35 @@ block content
     .alert.alert-success Correct answer!
   else if success==false
     .alert.alert-danger Wrong answer!
-
+  
   #results.col-lg-6
-    h3 Kyselyn tulos
-    table.table.table-striped.table-condensed
-      thead
-        tr
-          if cols
-            - each col in cols
-              th= col
-      tbody
-        if rows
-          - each row in rows
-            tr
-              - each col in cols
-                td= row[col]
+    if rows.length
+      h3 Kyselyn tulos
+      table.table.table-striped.table-condensed
+        thead
+          tr
+            if cols
+              each col in cols
+                th= col
+        tbody
+          if rows
+            each row in rows
+              tr
+                each col in cols
+                  td= row[col]
+
   #modelanswer.col-lg-6
     h3 Mallivastaus
     table.table.table-striped.table-condensed
       thead
         tr
           if mcols
-            - each col in mcols
+            each col in mcols
               th= col
       tbody
         if mrows
-          - each row in mrows
+          each row in mrows
             tr
-              - each col in mcols
+              each col in mcols
                 td= row[col]
 

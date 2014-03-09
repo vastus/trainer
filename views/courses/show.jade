@@ -4,21 +4,22 @@ block content
   p= course.description
   p Tietokanta:  
     a(href="/databases/#{course.database._id}")= course.database.name
-   
-  if participates
-    h3 Tehtävät
-    .list-group
-      each task in course.tasks
-        a(href="/tasks/#{task._id}").list-group-item
-          h4.list-group-item-heading= task.name
-          p.list-group-item-text= task.description
-  else if currentUser
-    a(href="/courses/#{course._id}/join") Liity
-
-  if currentUser && currentUser.priviledges > 1
-      a(href="/courses/#{course._id}/tasks/new") Lisää tehtävä 
+  
+  .col-lg-6 
+    if participates
+      h3 Tehtävät
+      .list-group
+        each task in course.tasks
+          a(href="/tasks/#{task._id}").list-group-item
+            h4.list-group-item-heading= task.name
+            p.list-group-item-text= task.description
+      a(href="/courses/#{course._id}/tasks/new") Lisää tehtävä
+    else if currentUser
+      a(href="/courses/#{course._id}/join") Liity
+  .col-lg-6
+    if currentUser && currentUser.priviledges > 1
       h3 Opiskelijat
-      ul.list-group
+      .list-group
         each student in course.students
-          li.list-group-item
-            a(href="/users/#{student.username}")= student.username
+          a(href="/users/#{student.username}").list-group-item
+            h4.list-group-item-heading= student.username
