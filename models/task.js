@@ -49,6 +49,7 @@ TaskSchema.methods = {
             .findOne({_id: this.course})
             .populate('database')
             .exec(function(err, course){
+
               //run query in course db
               course.database.query(thisTask.correct_query, function(err, cols, rows){
                 if(err) return cb(err, false)
@@ -68,13 +69,13 @@ TaskSchema.methods = {
     async.series([
       function(callback) {
         CompletedTask.find({user: user.id, task: task.id}, function(err, ctasks){
-          console.log(ctasks);
+          //console.log(ctasks);
 
           for(var i =0; i<ctasks.length; i++){
-            console.log(ctasks[i].answer_query + "   vs.   " + query);
+            //console.log(ctasks[i].answer_query + "   vs.   " + query);
             ctasks[i].answer_query==query
             if(ctasks[i].answer_query==query){
-              console.log("not saving!");
+              //console.log("not saving!");
               return callback("duplicate", false);
             }
           }
@@ -88,7 +89,7 @@ TaskSchema.methods = {
             if(err) return cb(err);
             user.tasks.push(task);
             user.save(function(err, user){
-              console.log("user saved too.");
+              //console.log("user saved too.");
               return callback(err, true);
             });
           });
@@ -97,7 +98,7 @@ TaskSchema.methods = {
     ],
       //callback
       function(err, results){
-        console.log(err);
+        //console.log(err);
         //return like everything normal, controller does not need to know what just happened
         cb(null, true);
       });
