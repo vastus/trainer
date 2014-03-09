@@ -14,6 +14,9 @@ block content
     .alert.alert-warning= error
   else if success
     .alert.alert-success Correct answer!
+    #modelanswer-query
+      h4 Mallikysely
+      pre= task.correct_query
   else if success==false
     .alert.alert-danger Wrong answer!
   
