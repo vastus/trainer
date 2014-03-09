@@ -4,15 +4,15 @@ block content
   h1 Users
 
   #results
-    table
+    table.table.table-striped
       thead
         if users
           tr
-            th name
+            th Nimi
       tbody
         if users
           - each u in users
             tr
               td
-                a(href="/users/"+u.username)= u.username
+                a(href="/users/#{u.username}")= u.username
 

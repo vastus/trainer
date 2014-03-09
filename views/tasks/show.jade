@@ -32,7 +32,7 @@ block content
                 td= row[col]
   #modelanswer
     h3 Mallivastaus
-    table
+    table.table.table-striped.table-condensed
       thead
         tr
           if mcols
@@ -44,3 +44,4 @@ block content
             tr
               - each col in mcols
                 td= row[col]
+

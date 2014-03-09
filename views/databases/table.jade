@@ -1,14 +1,17 @@
 extends ../layout
 block content
   #database
-    h1= database.name
-    table
+    h1
+      = database.name 
+    table.table.table-striped.table-condensed
       thead
-        each col in cols
-          th= col
+        tr
+          each col in cols
+            th= col
       tbody
         each row in rows
           tr
             each col in row
               td=col
   p= err
+

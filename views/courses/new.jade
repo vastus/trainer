@@ -6,17 +6,17 @@ block content
       .field
         label(for="course_name") Nimi
         br
-        input(name="name", value=name)
+        input(name="name", size="126", value=name)
       .field
         label(for="course_description") Kuvaus
         br
-        textarea(name="description", rows="10", cols="80")= description
+        textarea(name="description", rows="10", cols="127")= description
       .field
         label(for="course_active") Aktiivinen?
         input(id="course_active", name="active", type="checkbox", checked="checked")
       .field
         label(for="course_database") Tietokanta
-        select(name="database")
+        select(id="course_database", name="database")
           for database in databases
             option(value=database._id)=database.name
       .button
