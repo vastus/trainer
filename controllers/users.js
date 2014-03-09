@@ -46,9 +46,15 @@ exports.createUser = function(req, res){
   //Save to db
   newuser.save(function (err, user) {
     if (err) {
+        console.log(err);
+      var msg = 'Virhe. Kokeile uudestaan.';
+      if (err.errors.username)
+          msg = err.errors.username.message;
+      if (err.errors.hashed_password)
+            msg = err.errors.hashed_password.message;
       return res.render('users/new', {
-          error: 'Käyttäjätunnus varattu.',
-          username: username
+        error: msg,
+        username: username
       });
     }
     res.redirect('/');

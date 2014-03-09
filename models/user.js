@@ -100,16 +100,16 @@ var User = mongoose.model('User', UserSchema)
 /**
  * Validations.
  */
-UserSchema.path('username').validate(function (value) {
-    return value.length >= 8;
-}, 'Password must be at least 8 characters.');
+UserSchema.path('hashed_password').validate(function (value) {
+    return this._password.length >= 8;
+}, 'Salasanan tulee olla vähintään 8 merkkiä.');
 
 UserSchema.path('username').validate(function (value, done) {
     User.count({ username: value }, function (err, count) {
         if (err) return done(err);
         done(!count);
     });
-}, 'Username exists already. Username must be unique.');
+}, 'Käyttäjätunnus varattu.');
 
 module.exports = User;
 
