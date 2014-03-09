@@ -18,18 +18,14 @@ html
 
     nav.navibar
       ul.nav.nav-pills.navbar-inverse
-        if(currentUser)
-          if(currentUser.priviledges>2)
-            li
-              a(href="/users") Käyttäjät
+        if currentUser && currentUser.priviledges > 2
+          li
+            a(href="/users") Käyttäjät
         li
           a(href="/courses") Kurssit
-
-
-        if(currentUser)
-          if(currentUser.priviledges>1)
-            li
-              a(href="/databases") Tietokannat
+        if currentUser && currentUser.priviledges > 1
+          li
+            a(href="/databases") Tietokannat
         if currentUser
           li
             a(href="/users/#{currentUser.username}")= currentUser.username
@@ -40,7 +36,7 @@ html
             a(href="/login") Kirjaudu sisään
           li
             a(href="/users/new") Rekisteröidy
+
     #torso
       block content
-
 
