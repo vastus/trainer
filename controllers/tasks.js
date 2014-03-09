@@ -1,5 +1,6 @@
 var mongoose = require('mongoose'),
     Task = mongoose.model('Task');
+var async = require('async');
 
 
 
@@ -28,16 +29,23 @@ exports.index = function (req, res) {
  * GET tasks/:id
  */
 exports.showTask = function (req, res) {
-  Task.findOne({_id: req.params.id}, function (err, task){
-    console.log(req.query.task_query);
-    console.log(req.params.id);
-    if(req.query.task_query){
-//      res.send(req.query.task_query);
-      res.render('tasks/show', {task: task, query: req.query.task_query, error: null, cols: [], rows: []});
-      return;
-    }
-    res.render('tasks/show', {task: task, error: null, cols: [], rows: []})
-  });
+  Task.findOne({_id: req.params.id})
+      .populate('course')
+      .exec(
+        function (err, task){
+
+          //get model answer of the task
+          runQuery(task, task.correct_query, function(err, rows, cols){
+
+            //if there was a query in the URL (for example, user's previous solution to the task from users/show)
+            if(req.query.task_query){
+              res.render('tasks/show', {task: task, query: req.query.task_query, error: null, cols: [], rows: [], mcols: rows, mrows: cols});
+              return;
+            }
+
+            res.render('tasks/show', {task: task, error: null, cols: [], rows: [], mcols: rows, mrows: cols})
+          });
+      });
 };
 
 
@@ -45,66 +53,56 @@ exports.showTask = function (req, res) {
  * GET tasks/:id/execute
  */
 
-//the following code is 100% shit but it works.
-
-
-//wait for it...
-
-
-//here we go:
 exports.executeTask = function (req, res) {
+
   //find task, populate its course field
   Task.findOne({_id: req.params.id})
     .populate('course')
     .exec(function(err, task){
-      //task found, now find it's course's database
-      mongoose.model('Database')
-        .findOne({_id: task.course.database}, function(err, db){
-          if(err) console.log(err);
-          //db found, run user query
-          db.query(req.query.task_query, function(err, cols, rows){
-            if(err) res.render('tasks/show', {error: err,
-                                              task: task,
-                                              query: req.query.task_query,
-                                              success: false});
-            else{
-              //no errors!! wow!! such SQL!!! now check the answer.
-              task.check(cols, rows, function(err, bool){
 
-                //console.log("debug: " + bool + " " + res.locals.currentUser);
+      async.series([
+        //get model answer
+        function(callback){
 
-                //if wrong or no current user, don't try to save
-                if(bool && res.locals.currentUser){
-                  //console.log("correct!");
-
-                  //mark this task completed if it was correct
-                  task.markCompleted(res.locals.currentUser,
-                                     task,
-                                     req.query.task_query,
-                                     //render everything - phew !
-                                     function(err,bool){res.render('tasks/show', {task: task,
-                                          error: err,
-                                          cols: cols,
-                                          rows: rows,
-                                          query: req.query.task_query,
-                                          success: bool
-                                          });
-                                     });
-                } else {
-                  //not logged in or wrong answer
-                  res.render('tasks/show', {task: task,
-                                          error: err,
-                                          cols: cols,
-                                          rows: rows,
-                                          query: req.query.task_query,
-                                          success: bool
-                                          });
-                }
-//gotta love this shit.
-              });
-            }
+          runQuery(task, task.correct_query, function(err, rows, cols){
+            callback(err, rows, cols);
           });
-        });
+        },
+        //get user answer
+        function(callback){
+          runQuery(task, req.query.task_query, function(err, rows, cols){
+            callback(err, rows, cols);
+          });
+        }
+      ], function(err, results){
+
+        var rows = results[1][1];
+        var cols = results[1][0];
+
+        var mrows = results[0][1];
+        var mcols = results[0][0];
+
+
+        if(err) res.render('tasks/show', {error: err, task: task, query: req.query.task_query, success: false, mcols: mcols, mrows: mrows});
+        else{
+          task.check(cols, rows, function(err, bool){
+
+              //if wrong or no current user, don't try to save
+              if(bool && res.locals.currentUser){
+
+                //mark this task completed (if it was correct)
+                task.markCompleted(res.locals.currentUser,task,req.query.task_query, function(err,bool){
+                  res.render('tasks/show', {task: task, error: err, cols: cols, rows: rows, query: req.query.task_query, success: bool, mcols: mcols, mrows: mrows});
+                });
+
+              } else {
+
+                //not logged in or wrong answer
+                res.render('tasks/show', {task: task,error: err,cols: cols,rows: rows,query: req.query.task_query,success: bool, mcols: mcols, mrows: mrows});
+              }
+            });//task.check
+        }
+      });
   });
 };
 
@@ -153,4 +151,18 @@ exports.createTask = function (req, res) {
     //as the legal form is accessible only by priviledges>1
     res.send("nice try!");
   }
+}
+
+
+//takes task populated with course as param
+function runQuery(task, query, cb){
+  mongoose.model('Database')
+        .findOne({_id: task.course.database}, function(err, db){
+          if(err) console.log(err);
+
+          //db found, run user query
+          db.query(query, function(err, cols, rows){
+            return cb(err, cols, rows);
+          });
+        });
 }
