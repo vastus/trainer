@@ -2,13 +2,27 @@ extends ../layout
 block content
   h1= course.name
   p= course.description
-  ul
-    each task in course.tasks
-      li
-        a(href="/tasks/#{task._id}")= task.name
+  if participates
+    ul
+      each task in course.tasks
+        li
+          a(href="/tasks/#{task._id}")= task.name
+  else if currentUser
+    a(href="/courses/#{course._id}/join") Join course
 
   if currentUser
     if currentUser.priviledges > 1
       br
+      table
+        thead
+          tr
+            th Käyttäjä
+            th 
+        tbody
+          each student in course.students
+            tr
+              td= student.username
+              td 0
+      br
       p
-      a(href="/courses/#{course._id}/tasks/new") Add task
+        a(href="/courses/#{course._id}/tasks/new") Add task

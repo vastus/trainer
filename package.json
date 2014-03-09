@@ -10,7 +10,8 @@
     "jade": "~1.2.0",
     "mongoose": "~3.8.8",
     "mongodb": "*",
-    "async": "~0.2.10"
+    "async": "~0.2.10",
+    "memory-cache": "0.0.5"
   },
   "engines": {
     "node": "0.10.x"
