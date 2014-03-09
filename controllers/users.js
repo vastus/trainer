@@ -31,7 +31,6 @@ exports.newUser = function(req, res){
  * POST users/new
  */
 exports.createUser = function(req, res){
-  //console.log(req.body);
   var username = req.body.username;
   var password = req.body.password;
 
@@ -45,7 +44,7 @@ exports.createUser = function(req, res){
 
   //Save to db
   newuser.save(function (err, user) {
-    if (err) return console.error(err);
+    if (err) return res.redirect('/login', {reg_error: err});
     res.redirect('/');
   });
 }
@@ -68,15 +67,12 @@ exports.showUser = function(req, res){
             user.tasks,
             function(item, callback){
               mongoose.model('Task').findOne({_id: item.task}, function(err, task){
-                //console.log("task is: " + task);
 
                 var data = {completedTask: item, task: task};
-                //console.log("data is: " + data);
                 callback(err, data);
               });
             },
             function(err, result){
-              //console.log(result);
               res.render('users/show', {user: user, tasks: result});
             }
           )

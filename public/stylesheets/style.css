@@ -1,11 +1,10 @@
+@import "bootstrap/css/bootstrap-theme.min.css";
+@import "bootstrap/css/bootstrap.min.css";
 body {
   width: 60em;
   margin: 0 auto;
-  padding: 2em 2em 1em 2em;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-}
-a {
-  color: #00b7ff;
+  padding: 0 2em 1em 2em;
+  font: 14px "Helvetica Neue", "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 label {
   color: #666;
@@ -16,6 +15,33 @@ input,
 textarea {
   margin-bottom: 1em;
 }
-.button {
+.button input {
   margin-top: 1em;
+}
+header {
+  margin: 0;
+  padding: 0;
+  border-bottom: 1px solid #999;
+}
+header h1 {
+  margin: 0;
+  padding: 0;
+}
+header h1 a {
+  color: #444;
+  font-size: 2.3em;
+  font-weight: 300;
+  text-transform: uppercase;
+}
+header h1 a:hover {
+  color: #111;
+  text-decoration: none;
+}
+.nav li a {
+  font-size: 1.1em;
+  font-weight: 300;
+}
+.nav li a:hover {
+  color: #9cc2e3;
+  background: inherit;
 }

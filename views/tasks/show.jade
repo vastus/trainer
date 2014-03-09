@@ -18,7 +18,7 @@ block content
     else if success==false
       p Wrong answer!
 
-    table
+    table.table.table-striped.table-condensed
       thead
         tr
           if cols
@@ -29,4 +29,18 @@ block content
           - each row in rows
             tr
               - each col in cols
+                td= row[col]
+  #modelanswer
+    h3 Mallivastaus
+    table
+      thead
+        tr
+          if mcols
+            - each col in mcols
+              th= col
+      tbody
+        if mrows
+          - each row in mrows
+            tr
+              - each col in mcols
                 td= row[col]
