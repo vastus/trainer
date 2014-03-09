@@ -101,7 +101,7 @@ var User = mongoose.model('User', UserSchema)
  * Validations.
  */
 UserSchema.path('hashed_password').validate(function (value) {
-    return this._password.length >= 8;
+    return !this._password || this._password.length >= 8;
 }, 'Salasanan tulee olla vähintään 8 merkkiä.');
 
 UserSchema.path('username').validate(function (value, done) {
