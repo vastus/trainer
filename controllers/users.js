@@ -45,7 +45,12 @@ exports.createUser = function(req, res){
 
   //Save to db
   newuser.save(function (err, user) {
-    if (err) return console.error(err);
+    if (err) {
+      return res.render('users/new', {
+          error: 'Käyttäjätunnus varattu.',
+          username: username
+      });
+    }
     res.redirect('/');
   });
 }
