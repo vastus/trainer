@@ -1,10 +1,7 @@
 var mongoose = require('mongoose'),
     Task = mongoose.model('Task');
 var async = require('async');
-
-
-
-
+var cache = require('memory-cache');
 
 
 
@@ -33,16 +30,12 @@ exports.showTask = function (req, res) {
       .populate('course')
       .exec(
         function (err, task){
-
-          //get model answer of the task
-          runQuery(task, task.correct_query, function(err, rows, cols){
-
+          getModelAnswer(task, function(err, rows, cols){
             //if there was a query in the URL (for example, user's previous solution to the task from users/show)
             if(req.query.task_query){
               res.render('tasks/show', {task: task, query: req.query.task_query, error: null, cols: [], rows: [], mcols: rows, mrows: cols});
               return;
             }
-
             res.render('tasks/show', {task: task, error: null, cols: [], rows: [], mcols: rows, mrows: cols})
           });
       });
@@ -61,13 +54,11 @@ exports.executeTask = function (req, res) {
     .exec(function(err, task){
 
       async.series([
-        //get model answer
-        function(callback){
 
-          runQuery(task, task.correct_query, function(err, rows, cols){
-            callback(err, rows, cols);
-          });
+        function(callback){
+          getModelAnswer(task, callback);
         },
+
         //get user answer
         function(callback){
           runQuery(task, req.query.task_query, function(err, rows, cols){
@@ -75,10 +66,11 @@ exports.executeTask = function (req, res) {
           });
         }
       ], function(err, results){
+        //async.series callback
 
+        //pull data from results
         var rows = results[1][1];
         var cols = results[1][0];
-
         var mrows = results[0][1];
         var mcols = results[0][0];
 
@@ -96,15 +88,14 @@ exports.executeTask = function (req, res) {
                 });
 
               } else {
-
                 //not logged in or wrong answer
                 res.render('tasks/show', {task: task,error: err,cols: cols,rows: rows,query: req.query.task_query,success: bool, mcols: mcols, mrows: mrows});
               }
             });//task.check
         }
-      });
-  });
-};
+      });//async.series
+  });//.exec
+};//executeTask
 
 
 /*
@@ -153,6 +144,19 @@ exports.createTask = function (req, res) {
   }
 }
 
+//takes task populated with course as param, uses cache!
+function getModelAnswer(task, callback){
+  var cached = cache.get(task.id);
+    if(cached){
+      callback(null, cached.rows, cached.cols);
+    }else{
+      runQuery(task, task.correct_query, function(err, rows, cols){
+        //ikuinen cache, taskeja ei toistaiseksi voi muutenkaan muuttaa...
+        cache.put(task.id, {rows: rows, cols: cols});
+        callback(err, rows, cols);
+      });
+    }
+};
 
 //takes task populated with course as param
 function runQuery(task, query, cb){

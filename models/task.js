@@ -6,6 +6,7 @@ var mongoose = require('mongoose'),
     Schema = mongoose.Schema;
 var async = require('async');
 
+
 /**
  * User Schema
  * This is what MongoDB will save.
@@ -22,27 +23,20 @@ var TaskSchema = new Schema({
 
 
 
-/**
- * Virtuals - attributes you can get/set but are not saved to MongoDB.
- *
- * User.password works now, although mongoDB does not have field "password".
- */
-
-//TaskSchema
-//  .virtual('correct_answer');
-//  .get(function() { return this. });
-
-
 
 
 /**
- * Methods - public API
+ * Methods
  */
 
 TaskSchema.methods = {
-  //validates cols and rows with correct_query answer
+
+  //checks if the answer was right
   check: function check(userCols, userRows, cb){
+
+    //for some reason this is needed because course.database.query fails when using "this.correct_query"
     var thisTask = this;
+
 
     //find course db
     mongoose.model('Course')
@@ -63,43 +57,43 @@ TaskSchema.methods = {
               });
             });
   },
+
+  //marks the task completed, unless the same task with the same answer is already marked.
   markCompleted: function markCompleted(user, task, query, cb){
     console.log("markCompleted");
     var CompletedTask = mongoose.model('CompletedTask');
+
+
     async.series([
+      //check if CompletedTask with this query already saved (no need to save again!)
       function(callback) {
         CompletedTask.find({user: user.id, task: task.id}, function(err, ctasks){
-          //console.log(ctasks);
-
           for(var i =0; i<ctasks.length; i++){
-            //console.log(ctasks[i].answer_query + "   vs.   " + query);
-            ctasks[i].answer_query==query
             if(ctasks[i].answer_query==query){
-              //console.log("not saving!");
               return callback("duplicate", false);
             }
           }
           return callback(null, true);
         });
       },
-
+      //if the above did not throw duplicate error, save new completedTask to db
       function(callback) {
         var newCompletedTask = new CompletedTask({task: task._id, user: user._id, answer_query: query});
           newCompletedTask.save(function(err, task){
             if(err) return cb(err);
+
+            //update user.tasks
             user.tasks.push(task);
             user.save(function(err, user){
-              //console.log("user saved too.");
               return callback(err, true);
             });
           });
 
       }
     ],
-      //callback
+      //callback for async. series
       function(err, results){
-        //console.log(err);
-        //return like everything normal, controller does not need to know what just happened
+        //return like everything normal, controller does not need to know what just happened (completedTask saved or not saved)
         cb(null, true);
       });
   }
