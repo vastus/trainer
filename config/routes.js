@@ -38,6 +38,7 @@ module.exports = function (app) {
     app.get('/courses/new', courses.newCourse);
     app.post('/courses', courses.createCourse);
     app.get('/courses/:id/tasks/new', tasks.newTask);
+    app.get('/courses/:id/join', courses.joinCourse);
     app.get('/courses/:id', courses.showCourse);
 
     /**

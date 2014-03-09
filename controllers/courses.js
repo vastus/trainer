@@ -61,7 +61,39 @@ exports.createCourse = function(req, res){
  * GET users/show/:id
  */
 exports.showCourse = function(req, res){
-  Course.findOne({_id: req.params.id}).populate('tasks').exec(function (err, course) {
-    res.render('courses/show', {course: course});
+  Course.findOne({_id: req.params.id}).populate('tasks').populate('students').exec(function (err, course) {
+    var found = false;
+    if(res.locals.currentUser){
+        for(var i = 0; i < course.students.length; i++){
+            var student = course.students[i];
+            if(student.username == res.locals.currentUser.username){
+	        found = true;
+                break;
+            }
+        }
+    }
+    res.render('courses/show', {course: course, participates: found});
   });
 };
+
+exports.joinCourse = function(req, res){
+    if(!res.locals.currentUser){
+        res.send("Much hack?");
+        return;
+    }
+
+    Course.findOne({_id: req.params.id}).populate('students').exec(function(err, course){
+        var found = false;    
+        for(var student in course.students){
+            if(course.students[student].username == res.locals.currentUser.username){
+                found = true;
+                break;
+            }    
+        }
+        if(!found){
+            course.students.push(res.locals.currentUser);
+            course.save();
+        }
+	res.redirect("/courses/" + req.params.id);
+    });
+}
