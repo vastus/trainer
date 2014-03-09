@@ -7,6 +7,7 @@ html
     link(rel='stylesheet', href='/stylesheets/monokai.css')
     link(rel='stylesheet', href='/stylesheets/show-hint.css')
     script(src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.0/jquery.js')
+    script(src='/javascripts/bootstrap/js/bootstrap.min.js')
     script(src='/javascripts/codemirror-compressed.js')
     script(src='/javascripts/codemirror-editor.js')
   body
@@ -16,28 +17,26 @@ html
           a(href="/") Raineri
 
     nav.navibar
-      if(currentUser)
-        if(currentUser.priviledges>2)
-          a(href="/users") Käyttäjät
-          |  |
-      a(href="/courses") Kurssit
+      ul.nav.nav-pills.navbar-inverse
+        if currentUser && currentUser.priviledges > 2
+          li
+            a(href="/users") Käyttäjät
+        li
+          a(href="/courses") Kurssit
+        if currentUser && currentUser.priviledges > 1
+          li
+            a(href="/databases") Tietokannat
+        if currentUser
+          li
+            a(href="/users/#{currentUser.username}")= currentUser.username
+          li
+            a(href="/logout") Kirjaudu ulos
+        else
+          li
+            a(href="/login") Kirjaudu sisään
+          li
+            a(href="/users/new") Rekisteröidy
 
-
-      if(currentUser)
-        if(currentUser.priviledges>1)
-          |  |
-          a(href="/databases") Tietokannat
-      if currentUser
-        |  |
-        a(href="/users/#{currentUser.username}")= currentUser.username
-        |  |
-        a(href="/logout") Kirjaudu ulos
-      else
-        |  |
-        a(href="/login") Kirjaudu sisään
-        |  |
-        a(href="/users/new") Rekisteröidy
     #torso
       block content
-
 
