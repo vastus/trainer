@@ -2,10 +2,11 @@ extends ../layout
 block content
   #databases
     h1 Tietokannat
-    - each db in databases
-      .database
-        p.name
-          a(href="/databases/#{db._id}")= db.name
+    if databases.length
+      .list-group
+        each db in databases
+          a(href="/databases/#{db._id}").list-group-item
+            h4.list-group-item-heading= db.name
     hr
     .actions
       p

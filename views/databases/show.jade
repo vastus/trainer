@@ -2,10 +2,10 @@ extends ../layout
 block content
   #database
     h1= database.name
-    ul
+    .list-group
       each row in rows
-        li
-          a(href="/databases/#{database._id}/table/#{row.name}")=row.name
+        a(href="/databases/#{database._id}/table/#{row.name}").list-group-item
+          h4.list-group-item-heading= row.name
     hr
     .actions
       p

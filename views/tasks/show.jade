@@ -10,14 +10,15 @@ block content
       .button
         input(type="submit", value="Suorita")
 
-  #errors
-    p= error
-  #results
-    if success
-      p Correct answer!
-    else if success==false
-      p Wrong answer!
+  if error
+    .alert.alert-warning error
+  else if success
+    .alert.alert-success Correct answer!
+  else if success==false
+    .alert.alert-danger Wrong answer!
 
+  #results.col-lg-6
+    h3 Kyselyn tulos
     table.table.table-striped.table-condensed
       thead
         tr
@@ -30,7 +31,7 @@ block content
             tr
               - each col in cols
                 td= row[col]
-  #modelanswer
+  #modelanswer.col-lg-6
     h3 Mallivastaus
     table.table.table-striped.table-condensed
       thead

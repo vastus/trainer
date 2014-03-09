@@ -2,7 +2,8 @@ extends ../layout
 block content
   #database
     h1
-      = database.name 
+      a(href="/databases/#{database._id}")= database.name
+      = " - "+ table 
     table.table.table-striped.table-condensed
       thead
         tr

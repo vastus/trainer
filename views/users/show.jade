@@ -1,10 +1,9 @@
 extends ../layout
 block content
-  #user
-    .username
-      h2= user.username
-    .tasks
-      p Completed tasks:
-      - for task in tasks
-        a(href='/tasks/#{task.task.id}?task_query=#{task.completedTask.answer_query}')= task.task.name
-        br
+  h1= user.username
+  h2 Suoritetut tehtävät
+  .list-group
+    for task in tasks
+      a(href='/tasks/#{task.task.id}?task_query=#{task.completedTask.answer_query}').list-group-item
+        h4.list-group-item-heading= task.task.name
+        p.list-group-item-text= task.task.description
