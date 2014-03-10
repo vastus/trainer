@@ -7,8 +7,11 @@
   * Tuesday - Work on tasks, databases, views. 5 h
   * Wednesday - Sessions, views, code cleaning. 5 h
   * Thursday - Fixing query execution, destroy databases. 4 h
-  * Friday - Database validation, cleaning views + translation. 3.5 h
-  * TOTAL 40+ Tunteja puuttuu
+  * Friday - Database validation, cleaning views + translation. 4 h
+  * Sunday - Refactoring, cleaning, bootstrap, validation. 4 h
+  * Additional hours for own small blog project 5 h + 4 h
+  * https://github.com/vastus/blogoose
+  * TOTAL 41 h
 
 ## Elias
   * Ti: Kurssia edeltävä viikko: 1h suunnittelua
